@@ -59,19 +59,72 @@ const teams = {
     },
 };
                 const footballCharts = {
-                  "P_v_P": [
+                  "P_vs_P": [
                       { diceRoll: -3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
                       { diceRoll: -2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: -1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 0, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 4, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 5, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 6, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 7, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 8, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 9, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 10, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 11, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 12, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 13, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                      { diceRoll: 14, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                      { diceRoll: 15, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
                       // Add more entries as needed
                   ],
                   "P_vs_R": [
-                      { diceRoll: -3, playerRating: "6", outcomeIfMet: "complete pass for 10", outcomeElse: "incomplete" },
-                      { diceRoll: -2, playerRating: "7 or 8", outcomeIfMet: "interception", outcomeElse: "incomplete" },
+                      { diceRoll: -3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: -2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: -1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 0, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 4, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 5, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 6, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 7, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 8, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 9, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 10, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 11, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 12, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 13, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 14, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 15, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        // Add more entries as needed
                       // Add more entries as needed
                   ],
                   "P_vs_X": [
-                      { diceRoll: -3, playerRating: "9", outcomeIfMet: "touchdown", outcomeElse: "fumble" },
-                      { diceRoll: -2, playerRating: "10 or 11", outcomeIfMet: "field goal", outcomeElse: "missed kick" },
+                      { diceRoll: -3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: -2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: -1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 0, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 1, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 4, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 5, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 6, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 7, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 8, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 9, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 10, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 11, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 12, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 13, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        { diceRoll: 14, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
+                        { diceRoll: 15, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
+                        // Add more entries as needed
                       // Add more entries as needed
                   ],
                   // Additional charts here...
@@ -179,17 +232,55 @@ function rollDice() {
     // Display the matchup (e.g., "R vs X")
     const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
 
+    // Determine the influencing player and their impact
+    const influencingPlayer = getInfluencingPlayer(offenseTeamKey, defenseTeamKey, offensePlayCall);
+    const playerImpact = influencingPlayer.isOffense
+        ? influencingPlayer.rating // Add rating if offensive player
+        : -influencingPlayer.rating; // Subtract rating if defensive player
+
+    const modifiedRoll = twelveSidedDie + playerImpact;
+
     // Resolve the matchup using the footballCharts
     const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
     const chart = footballCharts[chartKey]; // Lookup the corresponding chart
-    const chartEntry = chart?.find(entry => entry.diceRoll === twelveSidedDie - 6);
+    const chartEntry = chart?.find(entry => entry.diceRoll === modifiedRoll - 6);
     const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
 
     // Display the results
     document.getElementById('dice-result').textContent = `
         ${diceResult}
-        Matchup: ${matchup} => Chart Result: ${chartResult}
+        Matchup: ${matchup}
+        Influencing Player: ${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"}), Rating: ${influencingPlayer.rating}
+        Modified Roll: ${modifiedRoll} => Chart Result: ${chartResult}
     `;
+}
+
+// Helper to select a weighted random player
+function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
+    const isOffense = Math.random() < 0.5; // 50/50 chance for offense or defense
+    const teamKey = isOffense ? offenseTeamKey : defenseTeamKey;
+    const playerPool = isOffense ? teams[teamKey].offense : teams[teamKey].defense;
+
+    // Define rank weights
+    const rankWeights = [0.2, 0.2, 0.12, 0.12, 0.12, 0.12, 0.12];
+    const cumulativeWeights = rankWeights.reduce((acc, w) => {
+        acc.push((acc[acc.length - 1] || 0) + w);
+        return acc;
+    }, []);
+
+    // Select a player based on weights
+    const random = Math.random();
+    const selectedRankIndex = cumulativeWeights.findIndex(cw => random <= cw);
+    const selectedPlayer = playerPool[selectedRankIndex];
+
+    // Get the player's rating based on the play call (P, R, X)
+    const playerRating = selectedPlayer[playCall];
+
+    return {
+        name: `${selectedPlayer.firstName} ${selectedPlayer.lastName}`,
+        rating: playerRating,
+        isOffense
+    };
 }
 
 document.getElementById('roll-dice').addEventListener('click', rollDice);
