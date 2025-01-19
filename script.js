@@ -145,6 +145,16 @@ function getOffenseAndDefenseTeams() {
     };
 }
 
+function getSelectedPlayChart() {
+    const playChartRadios = document.getElementsByName('play-chart');
+    for (const radio of playChartRadios) {
+        if (radio.checked) {
+            return radio.value; // Returns "normal", "hurry", or "control"
+        }
+    }
+    return "normal"; // Default to "normal" if none are selected
+}
+
 function rollDice() {
     const redDie = Math.ceil(Math.random() * 6);
     const whiteDie = Math.ceil(Math.random() * 6);
@@ -156,8 +166,12 @@ function rollDice() {
     const offenseTeamKey = offenseTeam === 'home' ? 'TeamA' : 'TeamB';
     const defenseTeamKey = defenseTeam === 'home' ? 'TeamA' : 'TeamB';
 
-    // Example: Use the offense team's normal play chart for dice roll
-    const offensePlayChart = teams[offenseTeamKey].playCharts.normal;
+    // Determine the selected play chart
+    const selectedPlayChart = getSelectedPlayChart();
+    const offensePlayChart = teams[offenseTeamKey].playCharts[selectedPlayChart];
+
+    // Example: Use the first play in the selected play chart
+    const selectedPlay = offensePlayChart[0]; // For simplicity, just show the first play
     const chart = footballCharts["Pass_vs_Pass"]; // Example chart lookup
     const chartEntry = chart.find(entry => entry.diceRoll === twelveSidedDie - 6);
 
@@ -165,7 +179,7 @@ function rollDice() {
 
     document.getElementById('dice-result').textContent = `
         ${diceResult}
-        Offense: ${offenseTeamKey}, Defense: ${defenseTeamKey} => Chart Result: ${chartResult}
+        Offense: ${offenseTeamKey}, Defense: ${defenseTeamKey}, Play Chart: ${selectedPlayChart} => Chart Result: ${chartResult}
     `;
 }
 
