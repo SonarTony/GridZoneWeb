@@ -100,35 +100,43 @@ function populateTeamDropdowns() {
 function displayTeamDetails(teamKey, elementId) {
     const team = teams[teamKey];
     const element = document.getElementById(elementId);
+
     if (!team) {
         element.innerHTML = '<p>No team selected</p>';
         return;
     }
-      const offenseDetails = team.offense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
-        const defenseDetails = team.defense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
-        element.innerHTML = `
-            <h3>${teamKey}</h3>
-            <p><strong>Offense:</strong><br>${offenseDetails}</p>
-            <p><strong>Defense:</strong><br>${defenseDetails}</p>
-            <p><strong>Play Charts:</strong> Normal: ${team.playCharts.normal.join(", ")}, Hurry: ${team.playCharts.hurry.join(", ")}, Control: ${team.playCharts.control.join(", ")}</p>
-        `;
-    }
-                function rollDice() {
-                  const redDie = Math.ceil(Math.random() * 6);
-                  const whiteDie = Math.ceil(Math.random() * 6);
-                  const twelveSidedDie = Math.ceil(Math.random() * 12);
-                  const diceResult = `Red Die: ${redDie}, White Die: ${whiteDie}, 12-Sided Die: ${twelveSidedDie}`;
-                  const chart = footballCharts["Pass_vs_Pass"];
-                  const chartEntry = chart.find(entry => entry.diceRoll === twelveSidedDie - 6);
-                  const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
-                  document.getElementById('dice-result').textContent = `${diceResult} => Chart Result: ${chartResult}`;
-                }
-                document.getElementById('roll-dice').addEventListener('click', rollDice);
-                document.getElementById('home-team').addEventListener('change', (event) => {
-                  displayTeamDetails(event.target.value, 'home-team-details');
-                });
-                document.getElementById('away-team').addEventListener('change', (event) => {
-                  displayTeamDetails(event.target.value, 'away-team-details');
-                });
-                populateTeamDropdowns();
-                
+
+    const offenseDetails = team.offense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
+    const defenseDetails = team.defense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
+
+    element.innerHTML = `
+        <h3>${teamKey}</h3>
+        <p><strong>Offense:</strong><br>${offenseDetails}</p>
+        <p><strong>Defense:</strong><br>${defenseDetails}</p>
+        <p><strong>Play Charts:</strong> Normal: ${team.playCharts.normal.join(", ")}, Hurry: ${team.playCharts.hurry.join(", ")}, Control: ${team.playCharts.control.join(", ")}</p>
+    `;
+}
+
+function rollDice() {
+    const redDie = Math.ceil(Math.random() * 6);
+    const whiteDie = Math.ceil(Math.random() * 6);
+    const twelveSidedDie = Math.ceil(Math.random() * 12);
+
+    const diceResult = `Red Die: ${redDie}, White Die: ${whiteDie}, 12-Sided Die: ${twelveSidedDie}`;
+    const chart = footballCharts["Pass_vs_Pass"];
+    const chartEntry = chart.find(entry => entry.diceRoll === twelveSidedDie - 6);
+    const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
+    document.getElementById('dice-result').textContent = `${diceResult} => Chart Result: ${chartResult}`;
+}
+
+document.getElementById('roll-dice').addEventListener('click', rollDice);
+
+document.getElementById('home-team').addEventListener('change', (event) => {
+    displayTeamDetails(event.target.value, 'home-team-details');
+});
+
+document.getElementById('away-team').addEventListener('change', (event) => {
+    displayTeamDetails(event.target.value, 'away-team-details');
+});
+
+populateTeamDropdowns();
