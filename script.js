@@ -130,27 +130,22 @@ const teams = {
                   // Additional charts here...
                 };
 
-/*function populateTeamDropdowns() {
-    const homeTeamDropdown = document.getElementById('home-team');
-    const awayTeamDropdown = document.getElementById('away-team');
+const specialEvents = [
+    { diceRoll: 1, event: "Injury to key player on offense" },
+    { diceRoll: 2, event: "Defense forced a turnover" },
+    { diceRoll: 3, event: "Weather conditions worsen" },
+    { diceRoll: 4, event: "Offense called for holding penalty" },
+    { diceRoll: 5, event: "Special teams block a kick" },
+    { diceRoll: 6, event: "Star player makes an exceptional play" },
+    { diceRoll: 7, event: "Referee flag changes the outcome" },
+    { diceRoll: 8, event: "Defense sacks QB for big loss" },
+    { diceRoll: 9, event: "Field goal attempt hits the upright" },
+    { diceRoll: 10, event: "Big kickoff return sets up offense" },
+    { diceRoll: 11, event: "Offensive coach challenges the play" },
+    { diceRoll: 12, event: "Fan disruption delays the game" },
+];
 
-    // Clear existing options first
-    homeTeamDropdown.innerHTML = '';
-    awayTeamDropdown.innerHTML = '';
 
-    Object.keys(teams).forEach(team => {
-        const option1 = document.createElement('option');
-        option1.value = team;
-        option1.textContent = team;
-        homeTeamDropdown.appendChild(option1);
-
-        const option2 = document.createElement('option');
-        option2.value = team;
-        option2.textContent = team;
-        awayTeamDropdown.appendChild(option2);
-    });
-}
-*/
 function populateTeamDropdowns() {
     const homeTeamDropdown = document.getElementById('home-team');
     const awayTeamDropdown = document.getElementById('away-team');
@@ -213,8 +208,16 @@ function rollDice() {
     const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
     const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
     const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
+    const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
 
-    const diceResult = `Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie}`;
+    const diceResult = `
+        Offense Die: ${offenseDie}, 
+        Defense Die: ${defenseDie}, 
+        12-Sided Die: ${twelveSidedDie}, 
+        Event Die: ${eventDie}
+    `;
+
+   // const diceResult = `Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie}`;
 
     // Determine which team is on offense and which is on defense
     const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
@@ -246,14 +249,23 @@ function rollDice() {
     const chartEntry = chart?.find(entry => entry.diceRoll === modifiedRoll - 6);
     const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
 
-    // Display the results
-    document.getElementById('dice-result').textContent = `
-        ${diceResult}
-        Matchup: ${matchup}
-        Influencing Player: ${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"}), Rating: ${influencingPlayer.rating}
-        Modified Roll: ${modifiedRoll} => Chart Result: ${chartResult}
-    `;
-}
+    // Check for special event
+    let specialEventResult = "";
+    if (eventDie === 6) {
+        const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie);
+        specialEventResult = specialEvent
+            ? `Special Event: ${specialEvent.event}`
+            : "No special event found.";
+    }
+     // Display the results
+        document.getElementById('dice-result').textContent = `
+            ${diceResult}
+            Matchup: ${matchup}
+            Influencing Player: ${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"}), Rating: ${influencingPlayer.rating}
+            Modified Roll: ${modifiedRoll} => Chart Result: ${chartResult}
+            ${specialEventResult ? `\n${specialEventResult}` : ""}
+        `;
+    }
 
 // Helper to select a weighted random player
 function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
@@ -281,7 +293,11 @@ function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
         rating: playerRating,
         isOffense
     };
+
+
+    
 }
+
 
 document.getElementById('roll-dice').addEventListener('click', rollDice);
 
