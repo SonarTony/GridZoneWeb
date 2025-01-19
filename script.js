@@ -59,17 +59,17 @@ const teams = {
     },
 };
                 const footballCharts = {
-                  "Pass_vs_Pass": [
+                  "P_v_P": [
                       { diceRoll: -3, playerRating: "2 or 3", outcomeIfMet: "pass for 3", outcomeElse: "pass for 1" },
                       { diceRoll: -2, playerRating: "4 or 5", outcomeIfMet: "run for 5", outcomeElse: "run for 2" },
                       // Add more entries as needed
                   ],
-                  "Pass_vs_Run": [
+                  "P_vs_R": [
                       { diceRoll: -3, playerRating: "6", outcomeIfMet: "complete pass for 10", outcomeElse: "incomplete" },
                       { diceRoll: -2, playerRating: "7 or 8", outcomeIfMet: "interception", outcomeElse: "incomplete" },
                       // Add more entries as needed
                   ],
-                  "Pass_vs_X": [
+                  "P_vs_X": [
                       { diceRoll: -3, playerRating: "9", outcomeIfMet: "touchdown", outcomeElse: "fumble" },
                       { diceRoll: -2, playerRating: "10 or 11", outcomeIfMet: "field goal", outcomeElse: "missed kick" },
                       // Add more entries as needed
@@ -156,30 +156,39 @@ function getSelectedPlayChart() {
 }
 
 function rollDice() {
-    const redDie = Math.ceil(Math.random() * 6);
-    const whiteDie = Math.ceil(Math.random() * 6);
-    const twelveSidedDie = Math.ceil(Math.random() * 12);
-    const diceResult = `Red Die: ${redDie}, White Die: ${whiteDie}, 12-Sided Die: ${twelveSidedDie}`;
+    // Roll dice
+    const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
+    const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
+    const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
+
+    const diceResult = `Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie}`;
 
     // Determine which team is on offense and which is on defense
     const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
     const offenseTeamKey = offenseTeam === 'home' ? 'TeamA' : 'TeamB';
     const defenseTeamKey = defenseTeam === 'home' ? 'TeamA' : 'TeamB';
 
-    // Determine the selected play chart
+    // Get the selected play chart
     const selectedPlayChart = getSelectedPlayChart();
     const offensePlayChart = teams[offenseTeamKey].playCharts[selectedPlayChart];
 
-    // Example: Use the first play in the selected play chart
-    const selectedPlay = offensePlayChart[0]; // For simplicity, just show the first play
-    const chart = footballCharts["Pass_vs_Pass"]; // Example chart lookup
-    const chartEntry = chart.find(entry => entry.diceRoll === twelveSidedDie - 6);
+    // Get the offensive and defensive play calls based on the d6 rolls
+    const offensePlayCall = offensePlayChart[offenseDie - 1]; // Array is 0-indexed
+    const defensePlayCall = offensePlayChart[defenseDie - 1]; // Using the same chart for defense
 
+    // Display the matchup (e.g., "R vs X")
+    const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
+
+    // Resolve the matchup using the footballCharts
+    const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
+    const chart = footballCharts[chartKey]; // Lookup the corresponding chart
+    const chartEntry = chart?.find(entry => entry.diceRoll === twelveSidedDie - 6);
     const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
 
+    // Display the results
     document.getElementById('dice-result').textContent = `
         ${diceResult}
-        Offense: ${offenseTeamKey}, Defense: ${defenseTeamKey}, Play Chart: ${selectedPlayChart} => Chart Result: ${chartResult}
+        Matchup: ${matchup} => Chart Result: ${chartResult}
     `;
 }
 
