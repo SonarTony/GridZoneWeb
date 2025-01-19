@@ -35,9 +35,38 @@
     </div>
 
     <div class="controls-section">
-      <h2>Game Controls</h2>
-      <button id="roll-dice">Roll Dice</button>
-      <div class="dice-result" id="dice-result"></div>
+        <h2>Game Controls</h2>
+
+        <div class="offense-selection">
+            <h3>Select Team on Offense:</h3>
+            <label>
+                <input type="radio" name="offense-team" value="home" id="home-offense" checked>
+                Home Team
+            </label>
+            <label>
+                <input type="radio" name="offense-team" value="away" id="away-offense">
+                Away Team
+            </label>
+        </div>
+
+        <div class="play-chart-selection">
+            <h3>Select Play Chart:</h3>
+            <label>
+                <input type="radio" name="play-chart" value="normal" id="normal-chart" checked>
+                Normal
+            </label>
+            <label>
+                <input type="radio" name="play-chart" value="hurry" id="hurry-chart">
+                Hurry
+            </label>
+            <label>
+                <input type="radio" name="play-chart" value="control" id="control-chart">
+                Control
+            </label>
+        </div>
+
+        <button id="roll-dice">Roll Dice</button>
+        <div class="dice-result" id="dice-result"></div>
     </div>
 
     <script src="script.js"></script>

@@ -77,13 +77,33 @@ const teams = {
                   // Additional charts here...
                 };
 
-function populateTeamDropdowns() {
+/*function populateTeamDropdowns() {
     const homeTeamDropdown = document.getElementById('home-team');
     const awayTeamDropdown = document.getElementById('away-team');
 
     // Clear existing options first
     homeTeamDropdown.innerHTML = '';
     awayTeamDropdown.innerHTML = '';
+
+    Object.keys(teams).forEach(team => {
+        const option1 = document.createElement('option');
+        option1.value = team;
+        option1.textContent = team;
+        homeTeamDropdown.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = team;
+        option2.textContent = team;
+        awayTeamDropdown.appendChild(option2);
+    });
+}
+*/
+function populateTeamDropdowns() {
+    const homeTeamDropdown = document.getElementById('home-team');
+    const awayTeamDropdown = document.getElementById('away-team');
+
+    homeTeamDropdown.innerHTML = '<option value="">Select a Team</option>';
+    awayTeamDropdown.innerHTML = '<option value="">Select a Team</option>';
 
     Object.keys(teams).forEach(team => {
         const option1 = document.createElement('option');
@@ -117,16 +137,36 @@ function displayTeamDetails(teamKey, elementId) {
     `;
 }
 
+function getOffenseAndDefenseTeams() {
+    const isHomeOffense = document.getElementById('home-offense').checked;
+    return {
+        offenseTeam: isHomeOffense ? 'home' : 'away',
+        defenseTeam: isHomeOffense ? 'away' : 'home'
+    };
+}
+
 function rollDice() {
     const redDie = Math.ceil(Math.random() * 6);
     const whiteDie = Math.ceil(Math.random() * 6);
     const twelveSidedDie = Math.ceil(Math.random() * 12);
-
     const diceResult = `Red Die: ${redDie}, White Die: ${whiteDie}, 12-Sided Die: ${twelveSidedDie}`;
-    const chart = footballCharts["Pass_vs_Pass"];
+
+    // Determine which team is on offense and which is on defense
+    const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
+    const offenseTeamKey = offenseTeam === 'home' ? 'TeamA' : 'TeamB';
+    const defenseTeamKey = defenseTeam === 'home' ? 'TeamA' : 'TeamB';
+
+    // Example: Use the offense team's normal play chart for dice roll
+    const offensePlayChart = teams[offenseTeamKey].playCharts.normal;
+    const chart = footballCharts["Pass_vs_Pass"]; // Example chart lookup
     const chartEntry = chart.find(entry => entry.diceRoll === twelveSidedDie - 6);
+
     const chartResult = chartEntry ? chartEntry.outcomeIfMet : "No matching result";
-    document.getElementById('dice-result').textContent = `${diceResult} => Chart Result: ${chartResult}`;
+
+    document.getElementById('dice-result').textContent = `
+        ${diceResult}
+        Offense: ${offenseTeamKey}, Defense: ${defenseTeamKey} => Chart Result: ${chartResult}
+    `;
 }
 
 document.getElementById('roll-dice').addEventListener('click', rollDice);
