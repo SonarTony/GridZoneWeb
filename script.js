@@ -37,7 +37,7 @@ const teams = {
          PF: 6,
      },
     },
-    "TeamB": {
+    "TeamB1": {
         offense: [
             { rank: 1, firstName: "Andrew", lastName: "King", position: "QB", P: 0, R: 1, X: 2 },
             { rank: 2, firstName: "Joshua", lastName: "Wright", position: "WR", P: 3, R: 1, X: 1 },
@@ -231,7 +231,68 @@ const teams = {
                           { diceRoll: 14, playerRating: "1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!", outcomeElse:"6 Point Gain" },
                           { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
                       ],
-                  // Additional charts here...
+                  
+                      "X_vs_P": [
+                          { diceRoll: -2, playerRating: "0,1", outcomeIfMet: "FUMBLE!!", outcomeElse:"1 Point loss" },
+                          { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "NO Gain!"},
+                          { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "Close call...1-3 NO GAIN. 4-6 Gain of 1" },
+                          { diceRoll: 1, playerRating: "2,3", outcomeIfMet: "1 point gain", outcomeElse: "NO GAIN" },
+                          { diceRoll: 2, playerRating: "1,2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "NO GAIN!" },
+                          { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain" },
+                          { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain" },
+                          { diceRoll: 5, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
+                          { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain. INJURY KEY PLAYER" },
+                          { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
+                          { diceRoll: 8, playerRating: "3", outcomeIfMet: "4 Point Gain", outcomeElse: "2 Point Gain" },
+                          { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "3 Point Gain" },
+                          { diceRoll: 10, playerRating: "3", outcomeIfMet: "5 Point Gain", outcomeElse: "2 Point Gain" },
+                          { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Gain" },
+                          { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "5 Point Gain" },
+                          { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "6 Point Gain" },
+                          { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "7 Point Gain" },
+                          { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!" },
+                          // Add more entries as needed
+                      ],
+                      "X_vs_R": [
+                          { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "FUMBLE! Same zone, Defense Recovers, roll RETURN" },
+                            { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "FUMBLE! Botched hand-off, -1 zone (Roll Recovery)" },
+                            { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "INTERCEPTED, same zone", outcomeElse: "Incomplete" },
+                            { diceRoll: 1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point loss & FUMBLE!" },
+                            { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "No Gain" },
+                            { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "No Gain" },
+                            { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "No Gain... INJURY OFFENSE" },
+                            { diceRoll: 5, playerRating: "3", outcomeIfMet: "1 point gain", outcomeElse: "No Gain!" },
+                            { diceRoll: 6, playerRating: "2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "No Gain!" },
+                            { diceRoll: 7, playerRating: "1,2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "No Gain!" },
+                            { diceRoll: 8, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain" },
+                            { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain..INJURY DEFENSE!" },
+                            { diceRoll: 10, playerRating: "2,3", outcomeIfMet: "2 Point Gain", outcomeElse: "1 Point Gain!" },
+                            { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
+                            { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
+                            { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "3 Poin Gain" },
+                            { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Gain" },
+                            { diceRoll: 15, playerRating: "3", outcomeIfMet: "8 Point Gain!", outcomeElse: "5 Point Gain" },
+                      ],
+                      "X_vs_X": [
+                          { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "2 point loss" },
+                          { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point loss and FUMBLE!" },
+                          { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Loss" },
+                          { diceRoll: 1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain..FUMBLE!..INJURY OFFENSE" },
+                          { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "NO GAIN!" },
+                          { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "NO GAIN!...INJURY DEFENSE" },
+                          { diceRoll: 4, playerRating: "2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "NO GAIN!" },
+                          { diceRoll: 5, playerRating: "1,2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "NO GAIN!" },
+                          { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "1 point Gain" },
+                          { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "1 point Gain....INJURY KEY PLAYER" },
+                          { diceRoll: 8, playerRating: "0,1,2,3", outcomeIfMet: " 2 point Gain" },
+                          { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "2 point Gain" },
+                          { diceRoll: 10, playerRating: "0,1,2,3", outcomeIfMet: "3 point Gain" },
+                          { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Gain" },
+                          { diceRoll: 12, playerRating: "3", outcomeIfMet: "TOUCHDOWN RUN!!", outcomeElse:"4 Point Gain"},
+                          { diceRoll: 13, playerRating: "2,3", outcomeIfMet: "TOUCHDOWN RUN!!", outcomeElse:"5 Point Gain" },
+                          { diceRoll: 14, playerRating: "1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!", outcomeElse:"6 Point Gain" },
+                          { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
+                      ],
                 };
 
 const specialEvents = [
@@ -339,114 +400,140 @@ function getSelectedTeams() {
     return { homeTeam, awayTeam };
 }
 
-    function rollDice() {
-        // Roll dice
-        const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
-        const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
-        const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
-        const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
+function rollDice() {
+    // Roll dice
+    const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
+    const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
+    const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
+    const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
 
-        const diceResult = `
-            Offense Die: ${offenseDie}, 
-            Defense Die: ${defenseDie}, 
-            12-Sided Die: ${twelveSidedDie}, 
-            Event Die: ${eventDie}
-        `;
+    const diceResult = `
+        Offense Die: ${offenseDie}, 
+        Defense Die: ${defenseDie}, 
+        12-Sided Die: ${twelveSidedDie}, 
+        Event Die: ${eventDie}
+    `;
 
-        // Get dynamically selected offense and defense teams
-        const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
+    // Get dynamically selected offense and defense teams
+    const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
 
-        // Dynamically reference teams from the `teams` object
-        const offenseTeamData = teams[offenseTeam];
-        const defenseTeamData = teams[defenseTeam];
+    // Dynamically reference teams from the `teams` object
+    const offenseTeamData = teams[offenseTeam];
+    const defenseTeamData = teams[defenseTeam];
 
-        // Get the selected play chart
-        const selectedPlayChart = getSelectedPlayChart();
-        const offensePlayChart = offenseTeamData.playCharts[selectedPlayChart];
+    // Get the selected play chart
+    const selectedPlayChart = getSelectedPlayChart();
+    const offensePlayChart = offenseTeamData.playCharts[selectedPlayChart];
 
-        // Get the offensive and defensive play calls based on the dice rolls
-        const offensePlayCall = offensePlayChart[offenseDie - 1];
-        const defensePlayCall = offensePlayChart[defenseDie - 1];
+    // Get the offensive and defensive play calls based on the dice rolls
+    const offensePlayCall = offensePlayChart[offenseDie - 1];
+    const defensePlayCall = offensePlayChart[defenseDie - 1];
 
-        // Display the matchup (e.g., "R vs P")
-        const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
+    // Log matchup and chart key for debugging
+    const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
+    const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
+    console.log("Matchup:", matchup);
+    console.log("Chart Key:", chartKey);
 
-        // Determine the influencing player
-        const influencingPlayer = getInfluencingPlayer(offenseTeam, defenseTeam, offensePlayCall);
-        const playerImpact = influencingPlayer.isOffense
-            ? influencingPlayer.rating
-            : -influencingPlayer.rating;
+    // Determine the influencing player
+    const influencingPlayer = getInfluencingPlayer(offenseTeam, defenseTeam, offensePlayCall);
+    const playerImpact = influencingPlayer.isOffense
+        ? influencingPlayer.rating
+        : -influencingPlayer.rating;
 
-        const modifiedRoll = twelveSidedDie + playerImpact;
+    const modifiedRoll = twelveSidedDie + playerImpact;
 
-        // Resolve the matchup using the footballCharts
-        const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
-        const chart = footballCharts[chartKey];
-        let chartResult = "No valid outcome";
-        let selectedPlayerName = "";
-        let influencingPlayerName = `${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"})`;
+    // Resolve the matchup using the footballCharts
+    const chart = footballCharts[chartKey];
+    let chartResult = "No valid outcome";
+    let selectedPlayerName = "";
+    let influencingPlayerName = `${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"})`;
 
-        if (chart) {
-            const chartEntry = chart.find(entry => entry.diceRoll === modifiedRoll);
+    if (chart) {
+        const chartEntry = chart.find(entry => entry.diceRoll === modifiedRoll );
 
-            if (chartEntry) {
-                if (chartKey.includes("R_vs_")) {
-                    // Select a player for the run play
-                    const rankIndex = Math.floor(Math.random() * offenseTeamData.playerFinder.R.length);
-                    const rank = parseInt(offenseTeamData.playerFinder.R[rankIndex], 10);
+        if (chartEntry) {
+            if (chartKey.includes("X_vs_")) {
+                // Logic for X plays (already implemented)
+                const rankIndex = Math.floor(Math.random() * offenseTeamData.playerFinder.X.length);
+                const rank = parseInt(offenseTeamData.playerFinder.X[rankIndex], 10);
 
-                    const selectedPlayer = offenseTeamData.offense.find(p => p.rank === rank);
+                const selectedPlayer = offenseTeamData.offense.find(p => p.rank === rank);
 
-                    if (selectedPlayer) {
-                        selectedPlayerName = `${selectedPlayer.firstName} ${selectedPlayer.lastName}`;
-                        const playerRating = selectedPlayer.R;
+                if (selectedPlayer) {
+                    selectedPlayerName = `${selectedPlayer.firstName} ${selectedPlayer.lastName}`;
+                    const playerRating = selectedPlayer.X;
 
-                        // Check the player rating against the chart entry
-                        if (chartEntry.playerRating.split(",").map(Number).includes(playerRating)) {
-                            chartResult = chartEntry.outcomeIfMet;
-                        } else {
-                            chartResult = chartEntry.outcomeElse || "No valid outcome";
-                        }
+                    // Check the player rating against the chart entry
+                    if (chartEntry.playerRating.split(",").map(Number).includes(playerRating)) {
+                        chartResult = chartEntry.outcomeIfMet;
                     } else {
-                        chartResult = "No matching player found for the selected rank.";
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
                     }
                 } else {
-                    // Handle P_vs_* and D_vs_* plays (QB is the selected player)
-                    const qb = offenseTeamData.offense.find(player => player.position === "QB");
+                    chartResult = "No matching player found for the selected rank.";
+                }
+            } else if (chartKey.includes("R_vs_")) {
+                // Logic for R plays (already implemented)
+                const rankIndex = Math.floor(Math.random() * offenseTeamData.playerFinder.R.length);
+                const rank = parseInt(offenseTeamData.playerFinder.R[rankIndex], 10);
 
-                    if (qb) {
-                        let ratingToCheck;
-                        if (chartKey.includes("P_vs_P")) {
-                            ratingToCheck = qb.P; // Check P rating
-                        } else if (chartKey.includes("P_vs_R")) {
-                            ratingToCheck = qb.P; // Check R rating
-                        } else if (chartKey.includes("P_vs_X") || chartKey.includes("D_vs_X")) {
-                            ratingToCheck = qb.X; // Check X rating
-                        } 
+                const selectedPlayer = offenseTeamData.offense.find(p => p.rank === rank);
 
-                        if (chartEntry.playerRating.split(",").map(Number).includes(ratingToCheck)) {
-                            chartResult = chartEntry.outcomeIfMet;
-                        } else {
-                            chartResult = chartEntry.outcomeElse || "No valid outcome";
-                        }
-                        selectedPlayerName = `${qb.firstName} ${qb.lastName}`;
+                if (selectedPlayer) {
+                    selectedPlayerName = `${selectedPlayer.firstName} ${selectedPlayer.lastName}`;
+                    const playerRating = selectedPlayer.R;
+
+                    // Check the player rating against the chart entry
+                    if (chartEntry.playerRating.split(",").map(Number).includes(playerRating)) {
+                        chartResult = chartEntry.outcomeIfMet;
                     } else {
-                        chartResult = "No QB found on offense team.";
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
                     }
+                } else {
+                    chartResult = "No matching player found for the selected rank.";
                 }
             } else {
-                chartResult = "No matching chart entry found.";
+                // Handle P_vs_* and D_vs_* plays (QB is the selected player)
+                const qb = offenseTeamData.offense.find(player => player.position === "QB");
+
+                if (qb) {
+                    let ratingToCheck;
+                    if (chartKey.includes("P_vs_P")) {
+                        ratingToCheck = qb.P; // Check P rating
+                    } else if (chartKey.includes("P_vs_R")) {
+                        ratingToCheck = qb.P; // Check R rating
+                    } else if (chartKey.includes("P_vs_X") || chartKey.includes("D_vs_X")) {
+                        ratingToCheck = qb.X; // Check X rating
+                    } 
+
+                    console.log("QB Selected:", qb.firstName, qb.lastName, "Rating to Check:", ratingToCheck); // Debugging
+
+                    if (chartEntry.playerRating.split(",").map(Number).includes(ratingToCheck)) {
+                        chartResult = chartEntry.outcomeIfMet;
+                    } else {
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
+                    }
+                    selectedPlayerName = `${qb.firstName} ${qb.lastName}`;
+                } else {
+                    chartResult = "No QB found on offense team.";
+                }
             }
         } else {
-            chartResult = "No chart available for this matchup.";
+            console.log("No chart entry found for modified roll:", modifiedRoll); // Debugging
+            chartResult = "No matching chart entry found.";
         }
+    } else {
+        console.log("Chart not found for key:", chartKey); // Debugging
+        chartResult = "No chart available for this matchup.";
+    }
 
-        // Special events
-        let specialEventResult = "";
-        if (eventDie === 6) {
-            const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie);
-            specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
-        }
+    // Special events
+    let specialEventResult = "";
+    if (eventDie === 6) {
+        const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie);
+        specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
+    }
 
     // Display results with improved readability
     document.getElementById('dice-result').innerHTML = `
