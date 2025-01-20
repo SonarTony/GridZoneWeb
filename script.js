@@ -269,82 +269,98 @@ function getSelectedTeams() {
     return { homeTeam, awayTeam };
 }
 
-        function rollDice() {
-            // Roll dice
-            const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
-            const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
-            const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
-            const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
+            function rollDice() {
+                // Roll dice
+                const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
+                const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
+                const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
+                const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
 
-            const diceResult = `
-                Offense Die: ${offenseDie}, 
-                Defense Die: ${defenseDie}, 
-                12-Sided Die: ${twelveSidedDie}, 
-                Event Die: ${eventDie}
-            `;
+                const diceResult = `
+                    Offense Die: ${offenseDie}, 
+                    Defense Die: ${defenseDie}, 
+                    12-Sided Die: ${twelveSidedDie}, 
+                    Event Die: ${eventDie}
+                `;
 
-            // Get dynamically selected offense and defense teams
-            const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
+                // Get dynamically selected offense and defense teams
+                const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
 
-            // Reference the correct teams
-            const offenseTeamKey = offenseTeam === 'TeamA' ? 'TeamA' : 'TeamB';
-            const defenseTeamKey = defenseTeam === 'TeamA' ? 'TeamA' : 'TeamB';
+                // Reference the correct teams
+                const offenseTeamKey = offenseTeam === 'TeamA' ? 'TeamA' : 'TeamB';
+                const defenseTeamKey = defenseTeam === 'TeamA' ? 'TeamA' : 'TeamB';
 
-            // Get the selected play chart
-            const selectedPlayChart = getSelectedPlayChart();
-            const offensePlayChart = teams[offenseTeamKey].playCharts[selectedPlayChart];
+                // Get the selected play chart
+                const selectedPlayChart = getSelectedPlayChart();
+                const offensePlayChart = teams[offenseTeamKey].playCharts[selectedPlayChart];
 
-            // Get the offensive and defensive play calls based on the dice rolls
-            const offensePlayCall = offensePlayChart[offenseDie - 1];
-            const defensePlayCall = offensePlayChart[defenseDie - 1];
+                // Get the offensive and defensive play calls based on the dice rolls
+                const offensePlayCall = offensePlayChart[offenseDie - 1];
+                const defensePlayCall = offensePlayChart[defenseDie - 1];
 
-            // Display the matchup (e.g., "P vs P")
-            const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
+                // Display the matchup (e.g., "X vs P")
+                const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
 
-            // Get the influencing player and their impact
-            const influencingPlayer = getInfluencingPlayer(offenseTeamKey, defenseTeamKey, offensePlayCall);
-            const playerImpact = influencingPlayer.isOffense
-                ? influencingPlayer.rating
-                : -influencingPlayer.rating;
+                // Get the influencing player and their impact
+                const influencingPlayer = getInfluencingPlayer(offenseTeamKey, defenseTeamKey, offensePlayCall);
+                const playerImpact = influencingPlayer.isOffense
+                    ? influencingPlayer.rating
+                    : -influencingPlayer.rating;
 
-            const modifiedRoll = twelveSidedDie + playerImpact;
+                const modifiedRoll = twelveSidedDie + playerImpact;
 
-            // Resolve the matchup using the footballCharts
-            const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
-            const chart = footballCharts[chartKey];
-            let chartResult = "No valid outcome";
+                // Resolve the matchup using the footballCharts
+                const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
+                const chart = footballCharts[chartKey];
+                let chartResult = "No valid outcome";
 
-            if (chart) {
-                const chartEntry = chart.find(entry => entry.diceRoll === modifiedRoll);
+                if (chart) {
+                    const chartEntry = chart.find(entry => entry.diceRoll === modifiedRoll);
 
-                if (chartEntry) {
-                    // Get the offensive QB
-                    const qb = teams[offenseTeamKey].offense.find(player => player.position === "QB");
+                    if (chartEntry) {
+                        // Get the offensive QB
+                        const qb = teams[offenseTeamKey].offense.find(player => player.position === "QB");
 
-                    if (qb) {
-                        const playerRatings = chartEntry.playerRating.split(",").map(value => value.trim()).map(Number);
+                        if (qb) {
+                            // Determine which rating to check based on the chartKey
+                            let ratingToCheck;
+                            if (chartKey.includes("P_vs_P")) {
+                                ratingToCheck = qb.P; // Check P rating
+                            } else if (chartKey.includes("P_vs_R")) {
+                                ratingToCheck = qb.P; // Check R rating
+                            } else if (chartKey.includes("P_vs_X") || chartKey.includes("D_vs_X")) {
+                                ratingToCheck = qb.X; // Check X rating
+                            } else {
+                                ratingToCheck = qb.P; // Default to P rating
+                            }
 
-                        if (playerRatings.includes(qb.P)) {
-                            chartResult = chartEntry.outcomeIfMet;
+                            // Parse playerRating as a list of numbers
+                            const playerRatings = chartEntry.playerRating.split(",").map(value => value.trim()).map(Number);
+
+                            console.log(`QB Rating to Check: ${ratingToCheck}, Player Ratings: ${playerRatings}`); // Debugging
+
+                            if (playerRatings.includes(ratingToCheck)) {
+                                chartResult = chartEntry.outcomeIfMet;
+                            } else {
+                                chartResult = chartEntry.outcomeElse || "No valid outcome";
+                            }
                         } else {
-                            chartResult = chartEntry.outcomeElse || "No valid outcome";
+                            chartResult = "No QB found on offense team.";
                         }
                     } else {
-                        chartResult = "No QB found on offense team.";
+                        chartResult = "No matching chart entry found.";
                     }
                 } else {
-                    chartResult = "No matching chart entry found.";
+                    chartResult = "No chart available for this matchup.";
                 }
-            } else {
-                chartResult = "No chart available for this matchup.";
-            }
 
-            // Special events
-            let specialEventResult = "";
-            if (eventDie === 6) {
-                const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie);
-                specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
-            }
+                // Special events
+                let specialEventResult = "";
+                if (eventDie === 6) {
+                    const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie);
+                    specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
+                }
+
           // Display the results
             document.getElementById('dice-result').textContent = `
                 ${diceResult}
