@@ -27,6 +27,10 @@ const teams = {
             hurry: ["P", "P", "R", "R", "P", "P"],
             control: ["R", "R", "R", "P", "P", "R"],
         },
+
+    powerfactor: {
+         PF: 4,
+     },
     },
     "TeamB": {
         offense: [
@@ -56,6 +60,9 @@ const teams = {
             hurry: ["R", "P", "P", "R", "P", "X"],
             control: ["R", "R", "P", "P", "R", "R"],
         },
+        powerfactor: {
+             PF: 5,
+         },
     },
 };
                 const footballCharts = {
@@ -149,21 +156,28 @@ function populateTeamDropdowns() {
     const homeTeamDropdown = document.getElementById('home-team');
     const awayTeamDropdown = document.getElementById('away-team');
 
-    homeTeamDropdown.innerHTML = '<option value="">Select a Team</option>';
-    awayTeamDropdown.innerHTML = '<option value="">Select a Team</option>';
+    // Clear existing options first
+    homeTeamDropdown.innerHTML = '<option value="" selected disabled>Select Home Team</option>';
+    awayTeamDropdown.innerHTML = '<option value="" selected disabled>Select Away Team</option>';
 
     Object.keys(teams).forEach(team => {
+        const pf = teams[team].powerfactor.PF; // Get the PF value
+
+        // Add the team to the home dropdown
         const option1 = document.createElement('option');
         option1.value = team;
-        option1.textContent = team;
+        option1.textContent = `${team} (PF: ${pf})`; // Add PF to the team name
         homeTeamDropdown.appendChild(option1);
 
+        // Add the team to the away dropdown
         const option2 = document.createElement('option');
         option2.value = team;
-        option2.textContent = team;
+        option2.textContent = `${team} (PF: ${pf})`; // Add PF to the team name
         awayTeamDropdown.appendChild(option2);
     });
 }
+
+
 function displayTeamDetails(teamKey, elementId) {
     const team = teams[teamKey];
     const element = document.getElementById(elementId);
@@ -173,24 +187,28 @@ function displayTeamDetails(teamKey, elementId) {
         return;
     }
 
-    const offenseDetails = team.offense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
-    const defenseDetails = team.defense.map(player => `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`).join('<br>');
+    const pf = team.powerfactor.PF; // Get the PF value
+    const offenseDetails = team.offense.map(player =>
+        `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`
+    ).join('<br>');
+
+    const defenseDetails = team.defense.map(player =>
+        `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`
+    ).join('<br>');
 
     element.innerHTML = `
-        <h3>${teamKey}</h3>
+        <h3>${teamKey} (PF: ${pf})</h3>
         <p><strong>Offense:</strong><br>${offenseDetails}</p>
         <p><strong>Defense:</strong><br>${defenseDetails}</p>
-        <p><strong>Play Charts:</strong> Normal: ${team.playCharts.normal.join(", ")}, Hurry: ${team.playCharts.hurry.join(", ")}, Control: ${team.playCharts.control.join(", ")}</p>
+        <p><strong>Play Charts:</strong> 
+            Normal: ${team.playCharts.normal.join(", ")}, 
+            Hurry: ${team.playCharts.hurry.join(", ")}, 
+            Control: ${team.playCharts.control.join(", ")}
+        </p>
     `;
 }
 
-/*function getOffenseAndDefenseTeams() {
-    const isHomeOffense = document.getElementById('home-offense').checked; // Radio button state
-    return {
-        offenseTeam: isHomeOffense ? 'home' : 'away',
-        defenseTeam: isHomeOffense ? 'away' : 'home',
-    };
-}*/
+
 
 function getOffenseAndDefenseTeams() {
     const isHomeOffense = document.getElementById('home-offense').checked; // Radio button state
