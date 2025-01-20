@@ -1,25 +1,22 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Football Game Interface</title>
-      <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-      <h1>Football Game</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Game Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Football Game</h1>
 
+    <div class="team-section">
+        <h2>Select Teams</h2>
+        <label for="home-team">Home Team:</label>
+        <select id="home-team"></select>
 
-
-      <div class="team-section">
-          <h2>Select Teams</h2>
-          <label for="home-team">Home Team:</label>
-          <select id="home-team"></select>
-
-          <label for="away-team">Away Team:</label>
-          <select id="away-team"></select>
-      </div>
-    
+        <label for="away-team">Away Team:</label>
+        <select id="away-team"></select>
+    </div>
 
     <div id="team-display" class="team-section" style="display: flex; justify-content: space-between;">
         <div id="home-team-details">
@@ -69,6 +66,24 @@
         <div class="dice-result" id="dice-result"></div>
     </div>
 
+    <!-- Injury Management Section -->
+    <div class="injury-management">
+        <h2>Manage Injuries</h2>
+        <label for="injury-rank">Rank:</label>
+        <input type="number" id="injury-rank">
+        <label for="injury-team">Team:</label>
+        <select id="injury-team">
+            <option value="" disabled selected>Select Team</option>
+            <!-- Teams will be dynamically populated -->
+        </select>
+        <label for="is-offense">Offense:</label>
+        <input type="checkbox" id="is-offense">
+        <button onclick="markInjured()">Mark Injured</button>
+        <button onclick="markUninjured()">Mark Uninjured</button>
+        <h3>Injured Players</h3>
+        <ul id="injured-players-list"></ul>
+    </div>
+
     <script src="script.js"></script>
-    </body>
-    </html>
+</body>
+</html>

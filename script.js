@@ -335,9 +335,35 @@ function populateTeamDropdowns() {
         awayTeamDropdown.appendChild(option2);
     });
 }
-
-
 function displayTeamDetails(teamKey, elementId) {
+    const team = teams[teamKey];
+    const element = document.getElementById(elementId);
+
+    if (!team) {
+        element.innerHTML = '<p>No team selected</p>';
+        return;
+    }
+
+    const offenseDetails = team.offense.map(player => `
+        Rank: ${player.rank}, ${player.firstName} ${player.lastName}, 
+        ${player.position}, P: ${player.P} R: ${player.R} X: ${player.X}
+        ${player.isInjured ? "<strong>(Injured)</strong>" : ""}
+    `).join('<br>');
+
+    const defenseDetails = team.defense.map(player => `
+        Rank: ${player.rank}, ${player.firstName} ${player.lastName}, 
+        ${player.position}, P: ${player.P} R: ${player.R} X: ${player.X}
+        ${player.isInjured ? "<strong>(Injured)</strong>" : ""}
+    `).join('<br>');
+
+    element.innerHTML = `
+        <h3>${teamKey}</h3>
+        <p><strong>Offense:</strong><br>${offenseDetails}</p>
+        <p><strong>Defense:</strong><br>${defenseDetails}</p>
+    `;
+}
+
+/*function displayTeamDetails(teamKey, elementId) {
     const team = teams[teamKey];
     const element = document.getElementById(elementId);
 
@@ -365,7 +391,7 @@ function displayTeamDetails(teamKey, elementId) {
             Control: ${team.playCharts.control.join(", ")}
         </p>
     `;
-}
+}*/
 
 
 
@@ -399,6 +425,123 @@ function getSelectedTeams() {
 
     return { homeTeam, awayTeam };
 }
+
+function populateInjuryTeamDropdown() {
+    const injuryTeamDropdown = document.getElementById('injury-team');
+    const homeTeam = document.getElementById('home-team').value;
+    const awayTeam = document.getElementById('away-team').value;
+
+    // Clear existing options
+    injuryTeamDropdown.innerHTML = '<option value="" disabled selected>Select Team</option>';
+
+    // Add current teams
+    if (homeTeam) {
+        const homeOption = document.createElement('option');
+        homeOption.value = homeTeam;
+        homeOption.textContent = `Home: ${homeTeam}`;
+        injuryTeamDropdown.appendChild(homeOption);
+    }
+    if (awayTeam) {
+        const awayOption = document.createElement('option');
+        awayOption.value = awayTeam;
+        awayOption.textContent = `Away: ${awayTeam}`;
+        injuryTeamDropdown.appendChild(awayOption);
+    }
+}
+
+// Call this function whenever the team dropdown changes
+document.getElementById('home-team').addEventListener('change', populateInjuryTeamDropdown);
+document.getElementById('away-team').addEventListener('change', populateInjuryTeamDropdown);
+
+// Display injured players
+function displayInjuredPlayers() {
+    const injuredList = document.getElementById('injured-players-list');
+    injuredList.innerHTML = '';
+
+    Object.keys(teams).forEach(teamName => {
+        const offenseInjuries = teams[teamName].offense.filter(player => player.isInjured);
+        const defenseInjuries = teams[teamName].defense.filter(player => player.isInjured);
+
+        offenseInjuries.forEach(player => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${player.firstName} ${player.lastName} (${teamName}, Offense, Rank: ${player.rank})`;
+            injuredList.appendChild(listItem);
+        });
+
+        defenseInjuries.forEach(player => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${player.firstName} ${player.lastName} (${teamName}, Defense, Rank: ${player.rank})`;
+            injuredList.appendChild(listItem);
+        });
+    });
+}
+
+// Mark a player as injured
+function markInjured() {
+    const rank = parseInt(document.getElementById('injury-rank').value, 10);
+    const teamName = document.getElementById('injury-team').value;
+    const isOffense = document.getElementById('is-offense').checked;
+
+    if (!rank || !teamName) {
+        alert('Please select a team and enter a valid rank.');
+        return;
+    }
+
+    const playerList = isOffense ? teams[teamName].offense : teams[teamName].defense;
+    const player = playerList.find(p => p.rank === rank);
+
+    if (player) {
+        if (!player.isInjured) {
+            player.backupStats = { P: player.P, R: player.R, X: player.X };
+            player.P = 0;
+            player.R = 0;
+            player.X = 0;
+            player.isInjured = true;
+            alert(`${player.firstName} ${player.lastName} has been marked as injured.`);
+        } else {
+            alert(`${player.firstName} ${player.lastName} is already injured.`);
+        }
+    } else {
+        alert('Player not found.');
+    }
+
+    displayInjuredPlayers();
+}
+
+// Mark a player as uninjured
+function markUninjured() {
+    const rank = parseInt(document.getElementById('injury-rank').value, 10);
+    const teamName = document.getElementById('injury-team').value;
+    const isOffense = document.getElementById('is-offense').checked;
+
+    if (!rank || !teamName) {
+        alert('Please select a team and enter a valid rank.');
+        return;
+    }
+
+    const playerList = isOffense ? teams[teamName].offense : teams[teamName].defense;
+    const player = playerList.find(p => p.rank === rank);
+
+    if (player) {
+        if (player.isInjured) {
+            player.P = player.backupStats.P;
+            player.R = player.backupStats.R;
+            player.X = player.backupStats.X;
+            player.isInjured = false;
+            player.backupStats = {};
+            alert(`${player.firstName} ${player.lastName} has been marked as uninjured.`);
+        } else {
+            alert(`${player.firstName} ${player.lastName} is not injured.`);
+        }
+    } else {
+        alert('Player not found.');
+    }
+
+    displayInjuredPlayers();
+}
+
+// Initial call to populate injury team dropdown
+populateInjuryTeamDropdown();
 
 function rollDice() {
     // Roll dice
