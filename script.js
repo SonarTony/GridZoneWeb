@@ -447,15 +447,17 @@ function rollDice() {
         specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
     }
 
-    // Display results
-    document.getElementById('dice-result').textContent = `
-        ${diceResult}
-        Matchup: ${matchup}
-        Influencing Player: ${influencingPlayerName}
-        Selected Player: ${selectedPlayerName ? selectedPlayerName : "N/A"}
-        Modified Roll: ${modifiedRoll} => Chart Result: ${chartResult}
-        ${specialEventResult ? `\n${specialEventResult}` : ""}
+    // Display results with improved readability
+    document.getElementById('dice-result').innerHTML = `
+        <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie}, Event Die: ${eventDie}</p>
+        <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
+        <p><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
+        <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
+        <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
+        <p><strong>Chart Result:</strong> ${chartResult}</p>
+        ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
     `;
+    
 }
 
 // Helper to select a weighted random player
