@@ -72,7 +72,7 @@ const teams = {
                 X: ["3", "3", "3", "4", "4", "2"],
          },
         powerfactor: {
-             PF: 5,
+             PF: 4,
          },
     },
     "TeamC": {
@@ -404,6 +404,175 @@ function rollDice() {
     // Roll dice
     const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
     const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
+    const twelveSidedDie1 = Math.ceil(Math.random() * 12); // First d12
+    const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
+    let twelveSidedDie2 = null; // Second d12 (if triggered)
+
+    // Get dynamically selected offense and defense teams
+    const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
+
+    // Dynamically reference teams from the `teams` object
+    const offenseTeamData = teams[offenseTeam];
+    const defenseTeamData = teams[defenseTeam];
+
+    // Calculate power factor difference
+    const offensePF = offenseTeamData.powerfactor.PF;
+    const defensePF = defenseTeamData.powerfactor.PF;
+    const pfDifference = Math.abs(offensePF - defensePF);
+    const higherPFTeam = offensePF > defensePF ? offenseTeam : defenseTeam;
+
+    // Check if PF difference triggers a second d12 roll
+    let useHigherD12 = null; // Determines if the higher or lower d12 should be used
+    if (eventDie <= pfDifference && pfDifference > 0) {
+        twelveSidedDie2 = Math.ceil(Math.random() * 12); // Roll a second d12
+
+        // Determine whether to use the higher or lower d12
+        if (higherPFTeam === offenseTeam) {
+            useHigherD12 = true; // Higher PF team is on offense, use the higher d12
+        } else {
+            useHigherD12 = false; // Higher PF team is on defense, use the lower d12
+        }
+    }
+
+    // Determine which d12 to use
+    const finalTwelveSidedDie = useHigherD12 !== null
+        ? (useHigherD12 ? Math.max(twelveSidedDie1, twelveSidedDie2) : Math.min(twelveSidedDie1, twelveSidedDie2))
+        : twelveSidedDie1;
+
+    // Get the selected play chart
+    const selectedPlayChart = getSelectedPlayChart();
+    const offensePlayChart = offenseTeamData.playCharts[selectedPlayChart];
+
+    // Get the offensive and defensive play calls based on the dice rolls
+    const offensePlayCall = offensePlayChart[offenseDie - 1];
+    const defensePlayCall = offensePlayChart[defenseDie - 1];
+
+    // Log matchup and chart key for debugging
+    const matchup = `${offensePlayCall} vs ${defensePlayCall}`;
+    const chartKey = `${offensePlayCall}_vs_${defensePlayCall}`;
+    console.log("Matchup:", matchup);
+    console.log("Chart Key:", chartKey);
+
+    // Determine the influencing player
+    const influencingPlayer = getInfluencingPlayer(offenseTeam, defenseTeam, offensePlayCall);
+    const playerImpact = influencingPlayer.isOffense
+        ? influencingPlayer.rating
+        : -influencingPlayer.rating;
+
+    const modifiedRoll = finalTwelveSidedDie + playerImpact;
+
+    // Resolve the matchup using the footballCharts
+    const chart = footballCharts[chartKey];
+    let chartResult = "No valid outcome";
+    let selectedPlayerName = "";
+    let influencingPlayerName = `${influencingPlayer.name} (${influencingPlayer.isOffense ? "Offense" : "Defense"})`;
+
+    if (chart) {
+        const chartEntry = chart.find(entry => entry.diceRoll === modifiedRoll);
+
+        if (chartEntry) {
+            if (chartKey.includes("X_vs_")) {
+                // Logic for X plays (already implemented)
+                const rankIndex = Math.floor(Math.random() * offenseTeamData.playerFinder.X.length);
+                const rank = parseInt(offenseTeamData.playerFinder.X[rankIndex], 10);
+
+                const selectedPlayer = offenseTeamData.offense.find(p => p.rank === rank);
+
+                if (selectedPlayer) {
+                    selectedPlayerName = `${selectedPlayer.firstName} ${selectedPlayer.lastName}`;
+                    const playerRating = selectedPlayer.X;
+
+                    // Check the player rating against the chart entry
+                    if (chartEntry.playerRating.split(",").map(Number).includes(playerRating)) {
+                        chartResult = chartEntry.outcomeIfMet;
+                    } else {
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
+                    }
+                } else {
+                    chartResult = "No matching player found for the selected rank.";
+                }
+            } else if (chartKey.includes("R_vs_")) {
+                // Logic for R plays (already implemented)
+                const rankIndex = Math.floor(Math.random() * offenseTeamData.playerFinder.R.length);
+                const rank = parseInt(offenseTeamData.playerFinder.R[rankIndex], 10);
+
+                const selectedPlayer = offenseTeamData.offense.find(p => p.rank === rank);
+
+                if (selectedPlayer) {
+                    selectedPlayerName = `${selectedPlayer.firstName} ${selectedPlayer.lastName}`;
+                    const playerRating = selectedPlayer.R;
+
+                    // Check the player rating against the chart entry
+                    if (chartEntry.playerRating.split(",").map(Number).includes(playerRating)) {
+                        chartResult = chartEntry.outcomeIfMet;
+                    } else {
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
+                    }
+                } else {
+                    chartResult = "No matching player found for the selected rank.";
+                }
+            } else {
+                // Handle P_vs_* and D_vs_* plays (QB is the selected player)
+                const qb = offenseTeamData.offense.find(player => player.position === "QB");
+
+                if (qb) {
+                    let ratingToCheck;
+                    if (chartKey.includes("P_vs_P")) {
+                        ratingToCheck = qb.P; // Check P rating
+                    } else if (chartKey.includes("P_vs_R")) {
+                        ratingToCheck = qb.P; // Check R rating
+                    } else if (chartKey.includes("P_vs_X") || chartKey.includes("D_vs_X")) {
+                        ratingToCheck = qb.X; // Check X rating
+                    } 
+
+                    console.log("QB Selected:", qb.firstName, qb.lastName, "Rating to Check:", ratingToCheck); // Debugging
+
+                    if (chartEntry.playerRating.split(",").map(Number).includes(ratingToCheck)) {
+                        chartResult = chartEntry.outcomeIfMet;
+                    } else {
+                        chartResult = chartEntry.outcomeElse || "No valid outcome";
+                    }
+                    selectedPlayerName = `${qb.firstName} ${qb.lastName}`;
+                } else {
+                    chartResult = "No QB found on offense team.";
+                }
+            }
+        } else {
+            console.log("No chart entry found for modified roll:", modifiedRoll); // Debugging
+            chartResult = "No matching chart entry found.";
+        }
+    } else {
+        console.log("Chart not found for key:", chartKey); // Debugging
+        chartResult = "No chart available for this matchup.";
+    }
+
+    // Special events
+    let specialEventResult = "";
+    if (eventDie === 6) {
+        const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie1);
+        specialEventResult = specialEvent ? `Special Event: ${specialEvent.event}` : "No special event found.";
+    }
+
+    // Display results with improved readability
+    document.getElementById('dice-result').innerHTML = `
+        <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
+        ${twelveSidedDie2 !== null ? `<p><strong>Second D12:</strong> ${twelveSidedDie2}</p>` : ""}
+        ${useHigherD12 !== null ? `<p><strong>Power Factor Trigger:</strong> ${higherPFTeam} has higher PF. Using ${useHigherD12 ? "higher" : "lower"} D12.</p>` : ""}
+        <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
+        <p><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
+        <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
+        <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
+        <p><strong>Chart Result:</strong> ${chartResult}</p>
+        ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
+    `;
+}
+
+//
+//
+/*function rollDice() {
+    // Roll dice
+    const offenseDie = Math.ceil(Math.random() * 6); // First d6 for offense
+    const defenseDie = Math.ceil(Math.random() * 6); // Second d6 for defense
     const twelveSidedDie = Math.ceil(Math.random() * 12); // d12 for resolving results
     const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
 
@@ -547,7 +716,7 @@ function rollDice() {
     `;
     
 }
-
+*/
 // Helper to select a weighted random player
 function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
     const isOffense = Math.random() < 0.5; // 50/50 chance for offense or defense
