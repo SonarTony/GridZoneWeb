@@ -8,24 +8,24 @@ const teams = {
             { rank: 5, firstName: "Mark", lastName: "Garrison", position: "OL", P: 1, R: 1, X: 2 },
             { rank: 6, firstName: "Richard", lastName: "Yu", position: "OL", P: 1, R: 2, X: 0 },
             { rank: 7, firstName: "Saul", lastName: "Bond", position: "WR", P: 1, R: 1, X: 0 },
-            { rank: 8, firstName: "Mark", lastName: "Hernandez", position: "Extra", P: 1, R: 1, X: 1 },
+            { rank: 8, firstName: "Mike", lastName: "Whitaker", position: "OL", P: 1, R: 1, X: 1 },
             { rank: 9, firstName: "Steven", lastName: "Lopez", position: "Extra", P: 0, R: 1, X: 2 },
         ],
         defense: [
-            { rank: 1, firstName: "Daniel", lastName: "Gonzalez", position: "DL", P: 2, R: 3, X: 1 },
-            { rank: 2, firstName: "Matthew", lastName: "Wilson", position: "DL", P: 1, R: 2, X: 2 },
-            { rank: 3, firstName: "Anthony", lastName: "Anderson", position: "DL", P: 0, R: 3, X: 2 },
-            { rank: 4, firstName: "Kevin", lastName: "Thomas", position: "LB", P: 2, R: 2, X: 2 },
-            { rank: 5, firstName: "Brian", lastName: "Taylor", position: "LB", P: 3, R: 1, X: 1 },
-            { rank: 6, firstName: "George", lastName: "Moore", position: "DB", P: 2, R: 2, X: 3 },
-            { rank: 7, firstName: "Edward", lastName: "Martin", position: "DB", P: 3, R: 1, X: 2 },
-            { rank: 8, firstName: "Ronald", lastName: "Jackson", position: "Extra", P: 1, R: 1, X: 1 },
-            { rank: 9, firstName: "Donald", lastName: "White", position: "Extra", P: 2, R: 0, X: 1 },
+            { rank: 1, firstName: "Curtis", lastName: "Rouse", position: "LB", P: 1, R: 2, X: 1 },
+            { rank: 2, firstName: "Patrick", lastName: "Holmes", position: "LB", P: 0, R: 2, X: 3 },
+            { rank: 3, firstName: "Jack", lastName: "Coleman", position: "DL", P: 1, R: 1, X: 1 },
+            { rank: 4, firstName: "Damon", lastName: "Morton", position: "DB", P: 2, R: 0, X: 1 },
+            { rank: 5, firstName: "Edgar", lastName: "Moore", position: "DB", P: 2, R: 0, X: 1 },
+            { rank: 6, firstName: "Don", lastName: "Howell", position: "DL", P: 0, R: 2, X: 1 },
+            { rank: 7, firstName: "Frank", lastName: "Graham", position: "LB", P: 0, R: 1, X: 2 },
+            { rank: 8, firstName: "Edward", lastName: "Mitchell", position: "LB", P: 0, R: 2, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
         ],
         playCharts: {
             normal: ["P", "P", "R", "R", "X", "X"],
-            hurry: ["P", "P", "R", "R", "P", "P"],
-            control: ["R", "R", "R", "P", "P", "R"],
+            control: ["P", "R", "R", "R", "R", "X"],
+            hurry: ["X", "X", "P", "P", "P", "R"],
         },
          playerFinder: {
             P: ["1", "1", "1", "7", "7", "7"],
@@ -37,42 +37,42 @@ const teams = {
          PF: 6,
      },
     },
-    "TeamB1": {
+    "Ft. Wayne": {
         offense: [
-            { rank: 1, firstName: "Andrew", lastName: "King", position: "QB", P: 0, R: 1, X: 2 },
-            { rank: 2, firstName: "Joshua", lastName: "Wright", position: "WR", P: 3, R: 1, X: 1 },
-            { rank: 3, firstName: "Ethan", lastName: "Hill", position: "WR", P: 2, R: 3, X: 0 },
-            { rank: 4, firstName: "Alexander", lastName: "Scott", position: "RB", P: 1, R: 2, X: 2 },
-            { rank: 5, firstName: "Nicholas", lastName: "Green", position: "OL", P: 1, R: 2, X: 1 },
-            { rank: 6, firstName: "Ryan", lastName: "Adams", position: "OL", P: 0, R: 3, X: 2 },
-            { rank: 7, firstName: "Jacob", lastName: "Baker", position: "OL", P: 1, R: 2, X: 1 },
-            { rank: 8, firstName: "Elijah", lastName: "Gonzales", position: "Extra", P: 2, R: 1, X: 0 },
-            { rank: 9, firstName: "Aaron", lastName: "Nelson", position: "Extra", P: 1, R: 0, X: 2 },
+            { rank: 1, firstName: "Monte", lastName: "Nixon", position: "QB", P: 2, R: 2, X: 2 },
+            { rank: 2, firstName: "Raymon", lastName: "Luzano", position: "WR", P: 2, R: 1, X: 2 },
+            { rank: 3, firstName: "Rodger", lastName: "Stout", position: "OL", P: 2, R: 1, X: 2 },
+            { rank: 4, firstName: "Domingo", lastName: "Kline", position: "WR", P: 3, R: 0, X: 0 },
+            { rank: 5, firstName: "James", lastName: "Smith", position: "OL", P: 1, R: 1, X: 3 },
+            { rank: 6, firstName: "Manny", lastName: "Bond", position: "OL", P: 1, R: 1, X: 2 },
+            { rank: 7, firstName: "Jerrod", lastName: "McLean", position: "RB", P: 0, R: 1, X: 2 },
+            { rank: 8, firstName: "Bruce", lastName: "Lynch", position: "HB", P: 0, R: 1, X: 2 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
         ],
         defense: [
-            { rank: 1, firstName: "Christopher", lastName: "Carter", position: "DL", P: 3, R: 1, X: 1 },
-            { rank: 2, firstName: "Nathan", lastName: "Mitchell", position: "DL", P: 1, R: 3, X: 2 },
-            { rank: 3, firstName: "Logan", lastName: "Perez", position: "DL", P: 0, R: 2, X: 3 },
-            { rank: 4, firstName: "Hunter", lastName: "Roberts", position: "LB", P: 2, R: 3, X: 1 },
-            { rank: 5, firstName: "Dylan", lastName: "Turner", position: "LB", P: 3, R: 2, X: 0 },
-            { rank: 6, firstName: "Lucas", lastName: "Phillips", position: "DB", P: 2, R: 3, X: 2 },
-            { rank: 7, firstName: "Gavin", lastName: "Campbell", position: "DB", P: 1, R: 2, X: 3 },
-            { rank: 8, firstName: "Caleb", lastName: "Parker", position: "Extra", P: 1, R: 1, X: 2 },
-            { rank: 9, firstName: "Isaac", lastName: "Evans", position: "Extra", P: 0, R: 2, X: 1 },
+            { rank: 1, firstName: "Philip", lastName: "Vallerin", position: "DL", P: 2, R: 1, X: 2 },
+            { rank: 2, firstName: "Tony", lastName: "Finley", position: "DB", P: 2, R: 0, X: 2 },
+            { rank: 3, firstName: "Floyd", lastName: "Walton", position: "DL", P: 2, R: 2, X: 2 },
+            { rank: 4, firstName: "Roose", lastName: "Dixon", position: "DL", P: 0, R: 2, X: 2 },
+            { rank: 5, firstName: "Hubert", lastName: "Vazquez", position: "DB", P: 2, R: 2, X: 2 },
+            { rank: 6, firstName: "Abraham", lastName: "Ames", position: "LB", P: 1, R: 1, X: 1 },
+            { rank: 7, firstName: "Will", lastName: "Smith", position: "LB", P: 0, R: 3, X: 1 },
+            { rank: 8, firstName: "Keith", lastName: "Wilson", position: "DL", P: 1, R: 0, X: 2 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
         ],
         playCharts: {
-            normal: ["P", "P", "R", "R", "X", "X"],
-            hurry: ["R", "P", "P", "R", "P", "X"],
-            control: ["R", "R", "P", "P", "R", "R"],
+            normal: ["P", "P", "P", "R", "X", "X"],
+            hurry: ["X", "X", "P", "P", "P", "R"],
+            control: ["P", "P", "P", "X", "X", "R"],
         },
 
         playerFinder: {
-                P: ["2", "2", "2", "3", "3", "4"],
-                R: ["4", "4", "4", "2", "2", "1"],
-                X: ["3", "3", "3", "4", "4", "2"],
+                P: ["4", "4", "4", "2", "2", "7"],
+                R: ["7", "7", "2", "2", "1", "1"],
+                X: ["7", "7", "7", "2", "2", "2"],
          },
         powerfactor: {
-             PF: 4,
+             PF: 6,
          },
     },
     "TeamC": {
@@ -233,24 +233,24 @@ const teams = {
                       ],
                   
                       "X_vs_P": [
-                          { diceRoll: -2, playerRating: "0,1", outcomeIfMet: "FUMBLE!!", outcomeElse:"1 Point loss" },
-                          { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "NO Gain!"},
-                          { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "Close call...1-3 NO GAIN. 4-6 Gain of 1" },
-                          { diceRoll: 1, playerRating: "2,3", outcomeIfMet: "1 point gain", outcomeElse: "NO GAIN" },
-                          { diceRoll: 2, playerRating: "1,2,3", outcomeIfMet: "1 Point Gain", outcomeElse: "NO GAIN!" },
-                          { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain" },
-                          { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Gain" },
-                          { diceRoll: 5, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
-                          { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain. INJURY KEY PLAYER" },
-                          { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Gain" },
-                          { diceRoll: 8, playerRating: "3", outcomeIfMet: "4 Point Gain", outcomeElse: "2 Point Gain" },
-                          { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "3 Point Gain" },
-                          { diceRoll: 10, playerRating: "3", outcomeIfMet: "5 Point Gain", outcomeElse: "2 Point Gain" },
-                          { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Gain" },
-                          { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "5 Point Gain" },
-                          { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "6 Point Gain" },
-                          { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "7 Point Gain" },
-                          { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!" },
+                          { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "INTERCEPTED! One Zone Downfield, +2 on Return Roll" },
+                          { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Loss Completion"},
+                          { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "INTERCEPTED, same zone, -1 on Return Roll" },
+                          { diceRoll: 1, playerRating: "0,1,2,3", outcomeIfMet: "Pass INCOMPLETE!" },
+                          { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "Shaky Handoff! 1-3 NO GAIN! .. 4-6 1 Point RUN" },
+                          { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "Run for 1 Point Gain." },
+                          { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "1 Point pass completion" },
+                          { diceRoll: 5, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Run" },
+                          { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Run. INJURY OFFENSIVE PLAYER" },
+                          { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "2 Point Pass Completion" },
+                          { diceRoll: 8, playerRating: "0,1,2,3", outcomeIfMet: "3 Point Run...INJURY DEFENSE" },
+                          { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Pass" },
+                          { diceRoll: 10, playerRating: "0,1,2,3", outcomeIfMet: "4 Point Run." },
+                          { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "5 Point Pass" },
+                          { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "6 Point Pass" },
+                          { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "7 Point Run" },
+                          { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!!" },
+                          { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN PASS!" },
                           // Add more entries as needed
                       ],
                       "X_vs_R": [
@@ -296,18 +296,18 @@ const teams = {
                 };
 
 const specialEvents = [
-    { diceRoll: 1, event: "Injury to key player on offense" },
-    { diceRoll: 2, event: "Defense forced a turnover" },
-    { diceRoll: 3, event: "Weather conditions worsen" },
-    { diceRoll: 4, event: "Offense called for holding penalty" },
-    { diceRoll: 5, event: "Special teams block a kick" },
-    { diceRoll: 6, event: "Star player makes an exceptional play" },
-    { diceRoll: 7, event: "Referee flag changes the outcome" },
-    { diceRoll: 8, event: "Defense sacks QB for big loss" },
-    { diceRoll: 9, event: "Field goal attempt hits the upright" },
-    { diceRoll: 10, event: "Big kickoff return sets up offense" },
-    { diceRoll: 11, event: "Offensive coach challenges the play" },
-    { diceRoll: 12, event: "Fan disruption delays the game" },
+    { diceRoll: 1, event: "Flag: Defense, Major (+2) - INJURY OFFENSE" },
+    { diceRoll: 2, event: "Flag: Defense, Minor (+1)" },
+    { diceRoll: 3, event: "Flag: Defense, Minor (+1)" },
+    { diceRoll: 4, event: "NO GAIN!! - INJURY DEFENSE" },
+    { diceRoll: 5, event: "PF: Offense Greater: Defense Minor (+1) OTHERWISE Stop made by random defender" },
+    { diceRoll: 6, event: "Flag, Minor Penalty on Lesser Power Factor. If equal, offsetting and time is lost" },
+    { diceRoll: 7, event: "PF: Defense Greater: Offense Minor Penalty (-1) OTHERWISE Gain of 1 by random player" },
+    { diceRoll: 8, event: "Gain of 1. COLLISION - two random players stunned." },
+    { diceRoll: 9, event: "Offense: gain equal to best skill of random offensive player. INJURY OFFENSE" },
+    { diceRoll: 10, event: "Flag: Offense, Minor (-1)" },
+    { diceRoll: 11, event: "Flag: Offense, Minor (-1)" },
+    { diceRoll: 12, event: "Flag: Offense, Major (-2) INJURY DEFENSE" },
 ];
 
 
@@ -362,38 +362,6 @@ function displayTeamDetails(teamKey, elementId) {
         <p><strong>Defense:</strong><br>${defenseDetails}</p>
     `;
 }
-
-/*function displayTeamDetails(teamKey, elementId) {
-    const team = teams[teamKey];
-    const element = document.getElementById(elementId);
-
-    if (!team) {
-        element.innerHTML = '<p>No team selected</p>';
-        return;
-    }
-
-    const pf = team.powerfactor.PF; // Get the PF value
-    const offenseDetails = team.offense.map(player =>
-        `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`
-    ).join('<br>');
-
-    const defenseDetails = team.defense.map(player =>
-        `Rank: ${player.rank}, ${player.firstName} ${player.lastName}, ${player.position}, P:${player.P} R:${player.R} X:${player.X}`
-    ).join('<br>');
-
-    element.innerHTML = `
-        <h3>${teamKey} (PF: ${pf})</h3>
-        <p><strong>Offense:</strong><br>${offenseDetails}</p>
-        <p><strong>Defense:</strong><br>${defenseDetails}</p>
-        <p><strong>Play Charts:</strong> 
-            Normal: ${team.playCharts.normal.join(", ")}, 
-            Hurry: ${team.playCharts.hurry.join(", ")}, 
-            Control: ${team.playCharts.control.join(", ")}
-        </p>
-    `;
-}*/
-
-
 
 function getOffenseAndDefenseTeams() {
     const isHomeOffense = document.getElementById('home-offense').checked; // Radio button state
