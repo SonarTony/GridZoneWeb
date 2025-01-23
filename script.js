@@ -267,17 +267,17 @@ const teams = {
                             { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "No Gain" },
                             { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "Dicey Pass! 1 INTERCEPTED!, 2-3 Incomplete, 4-6 Complete 1 Point" },
                             { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "Tough Running: 1-4 Gain of 1, 5-6 NO GAIN!" },
-                            { diceRoll: 5, playerRating: "3", outcomeIfMet: "Run 1 Point Gain" },
-                            { diceRoll: 6, playerRating: "2,3", outcomeIfMet: "Pass 1 Point Gain" },
-                            { diceRoll: 7, playerRating: "1,2,3", outcomeIfMet: "Run: 2 Point Gain. INJURY KEY PLAYER" },
+                            { diceRoll: 5, playerRating: "0,1,2,3", outcomeIfMet: "Run 1 Point Gain" },
+                            { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "Pass 1 Point Gain" },
+                            { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "Run: 2 Point Gain. INJURY KEY PLAYER" },
                             { diceRoll: 8, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 2 Point Gain" },
                             { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 3 Point Gain" },
-                            { diceRoll: 10, playerRating: "2,3", outcomeIfMet: "Run: 3 Point Gain!" },
+                            { diceRoll: 10, playerRating: "0,1,2,3", outcomeIfMet: "Run: 3 Point Gain!" },
                             { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 4 Point Gain" },
                             { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 5 Point Gain" },
                             { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 8 Point Gain" },
                             { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN PASS!!" },
-                            { diceRoll: 15, playerRating: "3", outcomeIfMet: "TOUCHDOWN PASS!!" },
+                            { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN PASS!!" },
                       ],
                       "X_vs_X": [
                           { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "SACKED 2 Point Loss!" },
@@ -286,17 +286,17 @@ const teams = {
                           { diceRoll: 1, playerRating: "0,1,2,3", outcomeIfMet: "Complete 1 Point Gain. FUMBLE! OFFENSE INJURY" },
                           { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "SACKED! 1 Point Loss" },
                           { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "NO GAIN!...INJURY KEY PLAYER" },
-                          { diceRoll: 4, playerRating: "2,3", outcomeIfMet: "No Gain!" },
-                          { diceRoll: 5, playerRating: "1,2,3", outcomeIfMet: "Pass: 1 Point Gain" },
+                          { diceRoll: 4, playerRating: "0,1,2,3", outcomeIfMet: "No Gain!" },
+                          { diceRoll: 5, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 1 Point Gain" },
                           { diceRoll: 6, playerRating: "0,1,2,3", outcomeIfMet: "Chaotic Run Play: 1-3 1 Point Gain, 4-6 FUMBLE (same zone)" },
                           { diceRoll: 7, playerRating: "0,1,2,3", outcomeIfMet: "Run: 1 point Gain....INJURY OFFENSE" },
                           { diceRoll: 8, playerRating: "0,1,2,3", outcomeIfMet: "Run: 1 point Gain" },
                           { diceRoll: 9, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 2 point Gain" },
                           { diceRoll: 10, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 3 point Gain" },
                           { diceRoll: 11, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 4 Point Gain" },
-                          { diceRoll: 12, playerRating: "3", outcomeIfMet: "Pass: 5 Point Gain"},
-                          { diceRoll: 13, playerRating: "2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
-                          { diceRoll: 14, playerRating: "1,2,3", outcomeIfMet: "TOUCHDOWN PASS!!" },
+                          { diceRoll: 12, playerRating: "0,1,2,3", outcomeIfMet: "Pass: 5 Point Gain"},
+                          { diceRoll: 13, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
+                          { diceRoll: 14, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN PASS!!" },
                           { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
                       ],
                 };
@@ -701,6 +701,49 @@ function rollDice() {
     // Add defensive player selection to rollDice()
 const defensivePlayerName = getRandomDefensivePlayer(defenseTeam);
 
+// Helper function to get a random player from a team (offense or defense)
+function getRandomPlayer(teamKey, isOffense) {
+    const playerPool = isOffense ? teams[teamKey].offense : teams[teamKey].defense;
+    const validPlayers = playerPool.filter(player => player.rank >= 1 && player.rank <= 7); // Only ranks 1-7
+    const randomIndex = Math.floor(Math.random() * validPlayers.length);
+    const selectedPlayer = validPlayers[randomIndex];
+
+    return selectedPlayer
+        ? `${selectedPlayer.firstName} ${selectedPlayer.lastName} (Rank: ${selectedPlayer.rank})`
+        : "No valid player found";
+}
+
+// Helper function to select a defensive player based on weighted probabilities
+function getRandomDefensivePlayer(defenseTeamKey) {
+    const defenseTeam = teams[defenseTeamKey].defense;
+
+    // Define rank weights
+    const rankWeights = [0.25, 0.20, 0.14, 0.12, 0.11, 0.10, 0.08];
+
+    // Generate cumulative weights
+    const cumulativeWeights = rankWeights.reduce((acc, weight) => {
+        acc.push((acc.length > 0 ? acc[acc.length - 1] : 0) + weight);
+        return acc;
+    }, []);
+
+    // Generate a random number between 0 and 1
+    const random = Math.random();
+
+    // Find the selected rank based on random value and cumulative weights
+    const selectedRankIndex = cumulativeWeights.findIndex(cw => random <= cw);
+
+    // Find the player corresponding to the selected rank
+    const selectedPlayer = defenseTeam[selectedRankIndex];
+
+    return selectedPlayer
+        ? `${selectedPlayer.firstName} ${selectedPlayer.lastName} (Rank: ${selectedPlayer.rank})`
+        : "No valid defensive player found";
+}
+
+// Add random offensive and defensive players to rollDice()
+const randomOffensivePlayerName = getRandomPlayer(offenseTeam, true);
+const randomDefensivePlayerName = getRandomPlayer(defenseTeam, false);
+
 // Display results with improved readability
 document.getElementById('dice-result').innerHTML = `
     <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
@@ -713,9 +756,10 @@ document.getElementById('dice-result').innerHTML = `
     <p><strong>Chart Result:</strong> ${chartResult}</p>
     ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
     <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
+    <p><strong>Random Offensive Player:</strong> ${randomOffensivePlayerName}</p>
+    <p><strong>Random Defensive Player:</strong> ${randomDefensivePlayerName}</p>
 `;
 }
-
 
 // Helper to select a weighted random player
 function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
