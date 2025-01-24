@@ -552,6 +552,8 @@ function rollDice() {
     const twelveSidedDie1 = Math.ceil(Math.random() * 12); // First d12
     const eventDie = Math.ceil(Math.random() * 6); // d6 for triggering special events
     let twelveSidedDie2 = null; // Second d12 (if triggered)
+    const fumbleDie = Math.ceil(Math.random() * 6); // FUMBLE DIE
+    const returnTableDie = Math.ceil(Math.random() * 12); // RETURN TABLE DIE
 
     // Get dynamically selected offense and defense teams
     const { offenseTeam, defenseTeam } = getOffenseAndDefenseTeams();
@@ -744,21 +746,44 @@ function getRandomDefensivePlayer(defenseTeamKey) {
 const randomOffensivePlayerName = getRandomPlayer(offenseTeam, true);
 const randomDefensivePlayerName = getRandomPlayer(defenseTeam, false);
 
-// Display results with improved readability
+
+
+// Helper function to find the receiver for pass plays
+function getReceiverForPassPlay(teamKey) {
+    const offenseTeam = teams[teamKey];
+    const playerFinderP = offenseTeam.playerFinder.P;
+    const randomIndex = Math.floor(Math.random() * playerFinderP.length);
+    const rank = parseInt(playerFinderP[randomIndex], 10);
+    const receiver = offenseTeam.offense.find(player => player.rank === rank);
+
+    return receiver
+        ? `${receiver.firstName} ${receiver.lastName} (Rank: ${receiver.rank})`
+        : "No valid receiver found";
+}
+
+// Inside rollDice()
+let receiverName = ""; // Initialize receiver name
+if (chartKey.includes("P_vs_")) {
+    // Determine receiver only for pass plays
+    receiverName = getReceiverForPassPlay(offenseTeam);
+}
+
 document.getElementById('dice-result').innerHTML = `
-    <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
-    ${twelveSidedDie2 !== null ? `<p><strong>Second D12:</strong> ${twelveSidedDie2}</p>` : ""}
-    ${useHigherD12 !== null ? `<p><strong>Power Factor Trigger:</strong> ${higherPFTeam} has higher PF. Using ${useHigherD12 ? "higher" : "lower"} D12.</p>` : ""}
-    <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
-    <p><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
-    <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
-    <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
-    <p><strong>Chart Result:</strong> ${chartResult}</p>
-    ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
-    <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
-    <p><strong>Random Offensive Player:</strong> ${randomOffensivePlayerName}</p>
-    <p><strong>Random Defensive Player:</strong> ${randomDefensivePlayerName}</p>
-`;
+        <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
+        <p><strong>Additional Dice:</strong> FUMBLE DIE: ${fumbleDie}, RETURN TABLE DIE: ${returnTableDie}</p>
+        ${twelveSidedDie2 !== null ? `<p><strong>Second D12:</strong> ${twelveSidedDie2}</p>` : ""}
+        ${useHigherD12 !== null ? `<p><strong>Power Factor Trigger:</strong> ${higherPFTeam} has higher PF. Using ${useHigherD12 ? "higher" : "lower"} D12.</p>` : ""}
+        <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
+        <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
+        <p><strong>Chart Result:</strong> ${chartResult}</p>
+        ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
+        <p><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
+        <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
+         ${receiverName ? `<p><strong>Receiver:</strong> ${receiverName}</p>` : ""}
+        <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
+        <p><strong>Random Offensive Player:</strong> ${randomOffensivePlayerName}</p>
+        <p><strong>Random Defensive Player:</strong> ${randomDefensivePlayerName}</p>
+    `;
 }
 
 // Helper to select a weighted random player
