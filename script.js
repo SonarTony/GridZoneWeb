@@ -521,36 +521,59 @@ function markInjured() {
 }
 
 // Mark a player as uninjured
-function markUninjured() {
-    const rank = parseInt(document.getElementById('injury-rank').value, 10);
-    const teamName = document.getElementById('injury-team').value;
-    const isOffense = document.getElementById('is-offense').checked;
-
-    if (!rank || !teamName) {
-        alert('Please select a team and enter a valid rank.');
-        return;
+function markPlayerUninjured(player) {
+    if (player.isInjured) {
+        player.P = player.backupStats.P;
+        player.R = player.backupStats.R;
+        player.X = player.backupStats.X;
+        player.isInjured = false;
+        player.backupStats = {};
     }
-
-    const playerList = isOffense ? teams[teamName].offense : teams[teamName].defense;
-    const player = playerList.find(p => p.rank === rank);
-
-    if (player) {
-        if (player.isInjured) {
-            player.P = player.backupStats.P;
-            player.R = player.backupStats.R;
-            player.X = player.backupStats.X;
-            player.isInjured = false;
-            player.backupStats = {};
-            alert(`${player.firstName} ${player.lastName} has been marked as uninjured.`);
-        } else {
-            alert(`${player.firstName} ${player.lastName} is not injured.`);
-        }
-    } else {
-        alert('Player not found.');
-    }
-
-    displayInjuredPlayers();
 }
+
+// Function to prompt for uninjuring all injured players one by one
+function promptToUninjurePlayers(teamKey) {
+    const team = teams[teamKey];
+    if (!team) return;
+
+    // Get all injured players from both offense and defense
+    const injuredPlayers = [
+        ...team.offense.filter(player => player.isInjured),
+        ...team.defense.filter(player => player.isInjured)
+    ];
+
+    // Prompt for each injured player
+    injuredPlayers.forEach(player => {
+        const confirmUninjure = confirm(
+            `Do you want to mark ${player.firstName} ${player.lastName} (Rank: ${player.rank}, ${player.position}) as uninjured?`
+        );
+        if (confirmUninjure) {
+            markPlayerUninjured(player);
+        }
+    });
+
+    // Update the display
+    displayInjuredPlayers();
+    displayTeamDetails(teamKey, teamKey === getOffenseAndDefenseTeams().offenseTeam ? 'home-team-details' : 'away-team-details');
+}
+
+// Event listener for offense selection change
+document.querySelectorAll('input[name="offense-team"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const { homeTeam, awayTeam } = getSelectedTeams();
+        const offenseTeamKey = document.getElementById('home-offense').checked ? homeTeam : awayTeam;
+
+        // Check if there are injured players on the current offense and defense teams
+        if (teams[homeTeam].offense.some(player => player.isInjured) || teams[homeTeam].defense.some(player => player.isInjured)) {
+            promptToUninjurePlayers(homeTeam);
+        }
+        if (teams[awayTeam].offense.some(player => player.isInjured) || teams[awayTeam].defense.some(player => player.isInjured)) {
+            promptToUninjurePlayers(awayTeam);
+        }
+    });
+});
+
+
 
 // Helper function to select a defensive player based on weighted probabilities
 function getRandomDefensivePlayer(defenseTeamKey) {
