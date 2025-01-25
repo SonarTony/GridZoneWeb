@@ -151,6 +151,82 @@ const teams = {
          PF: 6,
      },
     },
+    "Savannah": {
+        offense: [
+            { rank: 1, firstName: "Roderick", lastName: "Stevenson", position: "WR", P: 1, R: 2, X: 2 },
+            { rank: 2, firstName: "Lin", lastName: "McCarty", position: "WR", P: 1, R: 1, X: 2 },
+            { rank: 3, firstName: "Kenneth", lastName: "Alston", position: "QB", P: 1, R: 0, X: 1 },
+            { rank: 4, firstName: "Cody", lastName: "Morrison", position: "OL", P: 2, R: 2, X: 2 },
+            { rank: 5, firstName: "David", lastName: "Booker", position: "OL", P: 0, R: 1, X: 2 },
+            { rank: 6, firstName: "Morgan", lastName: "Mosley", position: "HB", P: 0, R: 1, X: 1 },
+            { rank: 7, firstName: "Vincent", lastName: "McKee", position: "WR", P: 1, R: 0, X: 1 },
+            { rank: 8, firstName: "Jim", lastName: "Schultz", position: "HB", P: 0, R: 2, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        defense: [
+            { rank: 1, firstName: "Omar", lastName: "Wiley", position: "LB", P: 1, R: 3, X: 3 },
+            { rank: 2, firstName: "John", lastName: "Newell", position: "DL", P: 0, R: 2, X: 2 },
+            { rank: 3, firstName: "Lon", lastName: "Fry", position: "DB", P: 2, R: 1, X: 1 },
+            { rank: 4, firstName: "Billy", lastName: "Moore", position: "DB", P: 2, R: 1, X: 1 },
+            { rank: 5, firstName: "John", lastName: "Merrit", position: "DL", P: 0, R: 1, X: 2 },
+            { rank: 6, firstName: "Javier", lastName: "Lopez", position: "LB", P: 1, R: 1, X: 1 },
+            { rank: 7, firstName: "Toby", lastName: "Santiago", position: "LB", P: 0, R: 1, X: 1 },
+            { rank: 8, firstName: "Simon", lastName: "Wiley", position: "DB", P: 2, R: 0, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        playCharts: {
+            normal: ["R", "R", "R", "X", "X", "P"],
+            control: ["R", "R", "R", "R", "P", "X"],
+            hurry: ["P", "P", "P", "R", "X", "X"],
+        },
+         playerFinder: {
+            P: ["2", "2", "2", "1", "1", "1"],
+            R: ["1", "1", "1", "1", "2", "6"],
+            X: ["2", "2", "2", "1", "1", "6"],
+     },
+
+    powerfactor: {
+         PF: 5,
+     },
+    },
+    "Little Rock": {
+        offense: [
+            { rank: 1, firstName: "Carson", lastName: "Bend", position: "RB", P: 2, R: 3, X: 2 },
+            { rank: 2, firstName: "Eddie", lastName: "Crosby", position: "QB", P: 3, R: 2, X: 2 },
+            { rank: 3, firstName: "Dwayne", lastName: "Santiago", position: "RB", P: 0, R: 3, X: 1 },
+            { rank: 4, firstName: "Hassahn", lastName: "Lloyd", position: "WR", P: 3, R: 1, X: 2 },
+            { rank: 5, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
+            { rank: 6, firstName: "Matt", lastName: "Ponce", position: "OL", P: 1, R: 2, X: 2 },
+            { rank: 7, firstName: "Ed", lastName: "Diaz", position: "OL", P: 1, R: 2, X: 1 },
+            { rank: 8, firstName: "Daniel", lastName: "Gains", position: "WR", P: 1, R: 2, X: 1 },
+            { rank: 9, firstName: "0lank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 2 },
+        ],
+        defense: [
+            { rank: 1, firstName: "Al", lastName: "Freidman", position: "DB", P: 3, R: 1, X: 3 },
+            { rank: 2, firstName: "Hank", lastName: "Kaiser", position: "LB", P: 1, R: 3, X: 2 },
+            { rank: 3, firstName: "Willie", lastName: "Davison", position: "DL", P: 1, R: 3, X: 1 },
+            { rank: 4, firstName: "Frank", lastName: "Bartlett", position: "DB", P: 1, R: 2, X: 2 },
+            { rank: 5, firstName: "Jeff", lastName: "McConnell", position: "LB", P: 1, R: 2, X: 1 },
+            { rank: 6, firstName: "Duce", lastName: "Downs", position: "LB", P: 1, R: 3, X: 0 },
+            { rank: 7, firstName: "Rick", lastName: "Bell", position: "LB", P: 0, R: 1, X: 2 },
+            { rank: 8, firstName: "Tiv", lastName: "Nelson", position: "LB", P: 1, R: 2, X: 1 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        playCharts: {
+            normal: ["R", "R", "R", "X", "X", "P"],
+            control: ["R", "R", "R", "R", "P", "P"],
+            hurry: ["X", "P", "P", "P", "P", "R"],
+        },
+         playerFinder: {
+            P: ["4", "4", "4", "1", "1", "1"],
+            R: ["1", "1", "3", "3", "2", "2"],
+            X: ["1", "1", "1", "4", "4", "3"],
+     },
+
+    powerfactor: {
+         PF: 5,
+     },
+    },
 };
                 const footballCharts = {
                   "P_vs_P": [
