@@ -301,6 +301,83 @@ const teams = {
          PF: 4,
      },
     },
+
+    "Louisville": {
+        offense: [
+            { rank: 1, firstName: "Galen", lastName: "Leblanc", position: "RB", P: 1, R: 3, X: 0 },
+            { rank: 2, firstName: "Doug", lastName: "Burger", position: "QB", P: 1, R: 2, X: 0 },
+            { rank: 3, firstName: "Johnny", lastName: "Hayes", position: "OL", P: 2, R: 2, X: 1 },
+            { rank: 4, firstName: "Jarret", lastName: "Fritz", position: "RB", P: 0, R: 2, X: 1 },
+            { rank: 5, firstName: "Lucas", lastName: "Wolfe", position: "WR", P: 0, R: 2, X: 1 },
+            { rank: 6, firstName: "Stephen", lastName: "Wyatt", position: "OL", P: 0, R: 2, X: 2 },
+            { rank: 7, firstName: "Coy", lastName: "Chen", position: "OL", P: 0, R: 2, X: 1 },
+            { rank: 8, firstName: "Clay", lastName: "McGee", position: "HB", P: 1, R: 2, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        defense: [
+            { rank: 1, firstName: "Pat", lastName: "Duncan", position: "DL", P: 3, R: 2, X: 2 },
+            { rank: 2, firstName: "Bernie", lastName: "Joseph", position: "LB", P: 2, R: 1, X: 2 },
+            { rank: 3, firstName: "Zack", lastName: "Aiken", position: "LB", P: 2, R: 1, X: 1 },
+            { rank: 4, firstName: "Austin", lastName: "Marquez", position: "DB", P: 2, R: 1, X: 0 },
+            { rank: 5, firstName: "Cory", lastName: "Roy", position: "DL", P: 2, R: 0, X: 1 },
+            { rank: 6, firstName: "Sammy", lastName: "Chapman", position: "LB", P: 2, R: 0, X: 0 },
+            { rank: 7, firstName: "Damon", lastName: "Huff", position: "LB", P: 0, R: 1, X: 3 },
+            { rank: 8, firstName: "Terry", lastName: "Gates", position: "LB", P: 0, R: 1, X: 1 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        playCharts: {
+            normal: ["R", "R", "R", "R", "P", "X"],
+            control: ["R", "R", "R", "R", "P", "X"],
+            hurry: ["P", "P", "P", "X", "X", "R"],
+        },
+         playerFinder: {
+            P: ["1", "1", "1", "1", "4", "5"],
+            R: ["1", "1", "1", "4", "5", "2"],
+            X: ["5", "5", "5", "4", "4", "1"],
+     },
+
+    powerfactor: {
+         PF: 6,
+     },
+    },
+    "Austin": {
+        offense: [
+            { rank: 1, firstName: "Lee", lastName: "Fields", position: "WR", P: 2, R: 2, X: 2 },
+            { rank: 2, firstName: "Deandre", lastName: "Glass", position: "QB", P: 3, R: 1, X: 1 },
+            { rank: 3, firstName: "Lauren", lastName: "Farley", position: "OL", P: 3, R: 2, X: 2 },
+            { rank: 4, firstName: "Thomas", lastName: "Banks", position: "WR", P: 2, R: 1, X: 0 },
+            { rank: 5, firstName: "Garth", lastName: "Burgess", position: "OL", P: 2, R: 0, X: 0 },
+            { rank: 6, firstName: "Paris", lastName: "Castro", position: "RB", P: 1, R: 2, X: 2 },
+            { rank: 7, firstName: "Ervin", lastName: "Thompson", position: "OL", P: 2, R: 0, X: 0 },
+            { rank: 8, firstName: "Nick", lastName: "Mora", position: "OL", P: 1, R: 0, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        defense: [
+            { rank: 1, firstName: "Paul", lastName: "Myers", position: "DL", P: 2, R: 2, X: 1 },
+            { rank: 2, firstName: "James", lastName: "Muller", position: "DB", P: 1, R: 1, X: 3 },
+            { rank: 3, firstName: "Sly", lastName: "Stevenson", position: "DL", P: 0, R: 2, X: 2 },
+            { rank: 4, firstName: "Jed", lastName: "Hudson", position: "LB", P: 1, R: 1, X: 2 },
+            { rank: 5, firstName: "Jackie", lastName: "King", position: "DL", P: 1, R: 0, X: 2 },
+            { rank: 6, firstName: "Pierre", lastName: "Hammond", position: "DB", P: 1, R: 0, X: 2 },
+            { rank: 7, firstName: "Doug", lastName: "Callahan", position: "LB", P: 1, R: 0, X: 1 },
+            { rank: 8, firstName: "Martin", lastName: "Collier", position: "DL", P: 0, R: 0, X: 0 },
+            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+        ],
+        playCharts: {
+            normal: ["P", "P", "R", "P", "X", "R"],
+            control: ["P", "P", "P", "P", "R", "R"],
+            hurry: ["P", "P", "P", "P", "P", "X"],
+        },
+         playerFinder: {
+            P: ["1", "1", "1", "4", "4", "6"],
+            R: ["6", "6", "6", "1", "1", "4"],
+            X: ["1", "1", "1", "6", "6", "4"],
+     },
+
+    powerfactor: {
+         PF: 4,
+     },
+    },
 };
                 const footballCharts = {
                   "P_vs_P": [
