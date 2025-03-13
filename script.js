@@ -271,7 +271,7 @@ const teams = {
             { rank: 4, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
             { rank: 5, firstName: "Thad", lastName: "Hurley", position: "OL", P: 2, R: 1, X: 2 },
             { rank: 6, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
-            { rank: 7, firstName: "Virgi;", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
+            { rank: 7, firstName: "Virgil;", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
             { rank: 8, firstName: "Robbie", lastName: "Black", position: "HB", P: 1, R: 0, X: 1 },
             { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
         ],
@@ -465,7 +465,7 @@ const teams = {
                       "R_vs_R": [
                           { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "FUMBLE! Same zone, Defense Recovers, roll RETURN" },
                             { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "FUMBLE! Botched hand-off, -1 zone (Roll Recovery)" },
-                            { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "INTERCEPTED, same zone", outcomeElse: "Incomplete" },
+                            { diceRoll: 0, playerRating: "0,1,2,3", outcomeIfMet: "1 point Loss & FUMBLE!" },
                             { diceRoll: 1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point loss & FUMBLE!" },
                             { diceRoll: 2, playerRating: "0,1,2,3", outcomeIfMet: "No Gain" },
                             { diceRoll: 3, playerRating: "0,1,2,3", outcomeIfMet: "No Gain" },
