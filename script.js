@@ -269,7 +269,7 @@ const teams = {
             { rank: 2, firstName: "Elvin", lastName: "Blackwell", position: "WR", P: 2, R: 0, X: 2 },
             { rank: 3, firstName: "Bart", lastName: "Potter", position: "OL", P: 2, R: 1, X: 2 },
             { rank: 4, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
-            { rank: 5, firstName: "Thad", lastName: "Hurley", position: "OL", P: 2, R: 1, X: 2 },
+            { rank: 5, firstName: "Thad", lastName: "Hurley", position: "OL", P: 1, R: 1, X: 1 },
             { rank: 6, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
             { rank: 7, firstName: "Virgil;", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
             { rank: 8, firstName: "Robbie", lastName: "Black", position: "HB", P: 1, R: 0, X: 1 },
