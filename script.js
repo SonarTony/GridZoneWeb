@@ -1081,7 +1081,7 @@ function getInfluencingPlayer(offenseTeamKey, defenseTeamKey, playCall) {
     const playerPool = isOffense ? teams[teamKey].offense : teams[teamKey].defense;
 
     // Define rank weights
-    const rankWeights = [0.2, 0.2, 0.12, 0.12, 0.12, 0.12, 0.12];
+    const rankWeights = [0.27, 0.18, 0.14, 0.12, 0.11, 0.10, 0.08];
     const cumulativeWeights = rankWeights.reduce((acc, w) => {
         acc.push((acc[acc.length - 1] || 0) + w);
         return acc;
