@@ -137,6 +137,40 @@ const teams = {
          PF: 6,
      },
     },
+    "Black Hills": {
+        offense: [
+            { rank: 1, firstName: "Stephen", lastName: "Charles", position: "WR", P: 2, R: 1, X: 0 },
+            { rank: 2, firstName: "Frank", lastName: "Hill", position: "QB", P: 2, R: 0, X: 1 },
+            { rank: 3, firstName: "Dwayne", lastName: "Santiago", position: "RB", P: 0, R: 3, X: 1 },
+            { rank: 4, firstName: "Roger", lastName: "Reynolds", position: "OL", P: 1, R: 2, X: 0 },
+            { rank: 5, firstName: "Victor", lastName: "Cortez", position: "WR", P: 1, R: 1, X: 1 },
+            { rank: 6, firstName: "Jim", lastName: "Fischer", position: "OL", P: 1, R: 1, X: 1 },
+            { rank: 7, firstName: "Tom", lastName: "Knight", position: "OL", P: 1, R: 0, X: 1 },
+        ],
+        defense: [
+            { rank: 1, firstName: "Pat", lastName: "Duncan", position: "DL", P: 3, R: 2, X: 2 },
+            { rank: 2, firstName: "Clark", lastName: "Coleman", position: "DB", P: 2, R: 2, X: 2 },
+            { rank: 3, firstName: "Frank", lastName: "Bartlett", position: "DB", P: 1, R: 2, X: 2 },
+            { rank: 4, firstName: "Roose", lastName: "Dixon", position: "DL", P: 0, R: 2, X: 2 },
+            { rank: 5, firstName: "Moe", lastName: "Chowder", position: "DL", P: 1, R: 1, X: 1 },
+            { rank: 6, firstName: "Rodney", lastName: "Williams", position: "LB", P: 1, R: 1, X: 1 },
+            { rank: 7, firstName: "Doug", lastName: "Callahan", position: "LB", P: 1, R: 0, X: 1 },
+        ],
+        playCharts: {
+            normal: ["P", "P", "P", "R", "R", "X"],
+            control: ["P", "P", "R", "R", "R", "R"],
+            hurry: ["P", "P", "P", "P", "X", "R"],
+        },
+         playerFinder: {
+            P: ["1", "1", "1", "1", "5", "5"],
+            R: ["3", "3", "3", "3", "1", "1"],
+            X: ["3", "3", "3", "5", "5", "5"],
+     },
+
+    powerfactor: {
+         PF: 4,
+     },
+    },
     "Savannah": {
         offense: [
             { rank: 1, firstName: "Roderick", lastName: "Stevenson", position: "WR", P: 1, R: 2, X: 2 },
