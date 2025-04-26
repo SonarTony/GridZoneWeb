@@ -289,7 +289,7 @@ const teams = {
             { rank: 4, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
             { rank: 5, firstName: "Thad", lastName: "Hurley", position: "OL", P: 1, R: 1, X: 1 },
             { rank: 6, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
-            { rank: 7, firstName: "Virgil;", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
+            { rank: 7, firstName: "Virgil", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
             { rank: 8, firstName: "Robbie", lastName: "Black", position: "HB", P: 1, R: 0, X: 1 },
             { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
         ],
@@ -392,6 +392,44 @@ const teams = {
          PF: 4,
      },
     },
+
+"Scottsdale": {
+    offense: [
+        { rank: 1, firstName: "Rick", lastName: "Ross", position: "QB", P: 2, R: 0, X: 2 },
+        { rank: 2, firstName: "Paris", lastName: "Castro", position: "HB", P: 1, R: 2, X: 2 },
+        { rank: 3, firstName: "Lauren", lastName: "Farley", position: "OL", P: 3, R: 2, X: 2 },
+        { rank: 4, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
+        { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 },
+        { rank: 6, firstName: "Preston", lastName: "Miller", position: "WR", P: 1, R: 2, X: 1 },
+        { rank: 7, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
+       
+    ],
+    defense: [
+        { rank: 1, firstName: "Jeff", lastName: "McConnell", position: "LB", P: 1, R: 2, X: 1 },
+        { rank: 2, firstName: "Abraham", lastName: "Ames", position: "LB", P: 1, R: 1, X: 1 },
+        { rank: 3, firstName: "Sly", lastName: "Stevenson", position: "DL", P: 0, R: 2, X: 2 },
+        { rank: 4, firstName: "Dwayne", lastName: "Solis", position: "DB", P: 3, R: 0, X: 0 },
+        { rank: 5, firstName: "Simon", lastName: "Wiley", position: "DB", P: 2, R: 0, X: 0 },
+        { rank: 6, firstName: "Clifford", lastName: "Beard", position: "DL", P: 1, R: 1, X: 1 },
+        { rank: 7, firstName: "Toby", lastName: "Santiago", position: "LB", P: 0, R: 1, X: 1 },
+        
+    ],
+    playCharts: {
+        normal: ["R", "P", "P", "P", "X", "X"],
+        control: ["R", "R", "R", "P", "P", "P"],
+        hurry: ["X", "X", "P", "P", "P", "P"],
+    },
+     playerFinder: {
+        P: ["2", "2", "5", "5", "6", "6"],
+        R: ["2", "2", "2", "6", "6", "6"],
+        X: ["2", "2", "2", "5", "5", "6"],
+ },
+
+powerfactor: {
+     PF: 5,
+ },
+},
+    
 };
                 const footballCharts = {
                   "P_vs_P": [
