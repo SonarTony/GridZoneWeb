@@ -227,7 +227,7 @@ const teams = {
             { rank: 3, firstName: "Willie", lastName: "Davison", position: "DL", P: 1, R: 3, X: 1 },
             { rank: 4, firstName: "Duce", lastName: "Downs", position: "LB", P: 1, R: 3, X: 1 },
             { rank: 5, firstName: "Rick", lastName: "Nelson", position: "DB", P: 2, R: 2, X: 1 },
-            { rank: 6, firstName: "Rick", lastName: "Bell", position: "LB", P: 0, R: 1, X: 2 },
+            { rank: 6, firstName: "Rick", lastName: "Bell", position: "DL", P: 0, R: 1, X: 2 },
             { rank: 7, firstName: "Albert", lastName: "Garrison", position: "LB", P: 1, R: 2, X: 0 },
            
         ],
@@ -282,40 +282,38 @@ const teams = {
      },
     }, "Pennsacola": {
         offense: [
-            { rank: 1, firstName: "Rod", lastName: "Acevedo", position: "QB", P: 3, R: 0, X: 2 },
+            { rank: 1, firstName: "Rod", lastName: "Acevedo", position: "QB", P: 3, R: 0, X: 1 },
             { rank: 2, firstName: "Elvin", lastName: "Blackwell", position: "WR", P: 2, R: 0, X: 2 },
-            { rank: 3, firstName: "Bart", lastName: "Potter", position: "OL", P: 2, R: 1, X: 2 },
-            { rank: 4, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
-            { rank: 5, firstName: "Thad", lastName: "Hurley", position: "OL", P: 1, R: 1, X: 1 },
-            { rank: 6, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
-            { rank: 7, firstName: "Virgil", lastName: "McDowell", position: "RB", P: 0, R: 1, X: 2 },
-            { rank: 8, firstName: "Robbie", lastName: "Black", position: "HB", P: 1, R: 0, X: 1 },
-            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+            { rank: 3, firstName: "Bart", lastName: "Potter", position: "OL", P: 2, R: 1, X: 1 },
+            { rank: 4, firstName: "Nicholas", lastName: "Page", position: "RB", P: 1, R: 2, X: 0 },
+            { rank: 5, firstName: "Ben", lastName: "Madison", position: "OL", P: 1, R: 2, X: 0 },
+            { rank: 6, firstName: "Thad", lastName: "Hurley", position: "OL", P: 1, R: 1, X: 2 },
+            { rank: 7, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
+           
         ],
         defense: [
-            { rank: 1, firstName: "Brookes", lastName: "Jones", position: "DL", P: 3, R: 0, X: 1 },
-            { rank: 2, firstName: "Tom", lastName: "Webster", position: "DL", P: 2, R: 2, X: 1 },
-            { rank: 3, firstName: "Gregory", lastName: "Rhodes", position: "LB", P: 1, R: 2, X: 2 },
-            { rank: 4, firstName: "John", lastName: "Jackson", position: "DB", P: 2, R: 1, X: 0 },
-            { rank: 5, firstName: "Philip", lastName: "Carps", position: "DL", P: 2, R: 0, X: 0 },
-            { rank: 6, firstName: "Milton", lastName: "Meadows", position: "LB", P: 1, R: 0, X: 1 },
-            { rank: 7, firstName: "Kris", lastName: "Kellce", position: "LB", P: 0, R: 2, X: 0 },
-            { rank: 8, firstName: "Simon", lastName: "Wiley", position: "DB", P: 2, R: 0, X: 0 },
-            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+            { rank: 1, firstName: "Tom", lastName: "Webster", position: "DL", P: 2, R: 2, X: 2 },
+            { rank: 2, firstName: "Gregory", lastName: "Rhodes", position: "LB", P: 1, R: 2, X: 2 },
+            { rank: 3, firstName: "Joshua", lastName: "Rhodes", position: "LB", P: 2, R: 2, X: 1 },
+            { rank: 4, firstName: "Tyler", lastName: "Gould", position: "DB", P: 1, R: 1, X: 2 },
+            { rank: 5, firstName: "Clifton", lastName: "Clark", position: "DL", P: 2, R: 1, X: 1 },
+            { rank: 6, firstName: "John", lastName: "Jackson", position: "DB", P: 2, R: 1, X: 0 },
+            { rank: 7, firstName: "Kris", lastName: "Kellce", position: "LB", P: 1, R: 2, X: 0 },
+           
         ],
         playCharts: {
-            normal: ["X", "X", "P", "P", "P", "R"],
-            control: ["R", "R", "P", "P", "P", "P"],
+            normal: ["X", "P", "P", "P", "P", "R"],
+            control: ["R", "R", "R", "R", "P", "P"],
             hurry: ["P", "P", "P", "P", "X", "X"],
         },
          playerFinder: {
-            P: ["2", "2", "2", "4", "4", "7"],
-            R: ["7", "7", "7", "7", "4", "2"],
-            X: ["2", "2", "4", "4", "7", "7"],
+            P: ["2", "2", "2", "2", "4", "7"],
+            R: ["4", "4", "4", "4", "2", "7"],
+            X: ["2", "2", "2", "7", "7", "7"],
      },
 
     powerfactor: {
-         PF: 4,
+         PF: 5,
      },
     },
 
@@ -410,7 +408,7 @@ const teams = {
         { rank: 4, firstName: "Dwayne", lastName: "Solis", position: "DB", P: 3, R: 0, X: 0 },
         { rank: 5, firstName: "Simon", lastName: "Wiley", position: "DB", P: 2, R: 0, X: 0 },
         { rank: 6, firstName: "Clifford", lastName: "Beard", position: "DL", P: 1, R: 1, X: 1 },
-        { rank: 7, firstName: "Toby", lastName: "Santiago", position: "LB", P: 0, R: 1, X: 1 },
+        { rank: 7, firstName: "Toby", lastName: "Santiago", position: "DL", P: 0, R: 1, X: 1 },
         
     ],
     playCharts: {
