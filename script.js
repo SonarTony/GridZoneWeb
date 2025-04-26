@@ -248,26 +248,24 @@ const teams = {
      },
     }, "Knoxville": {
         offense: [
-            { rank: 1, firstName: "Noel", lastName: "Sanders", position: "WR", P: 3, R: 2, X: 1 },
-            { rank: 2, firstName: "Lucas", lastName: "Rose", position: "WR", P: 2, R: 1, X: 1 },
-            { rank: 3, firstName: "Tom", lastName: "Kemp", position: "QB", P: 1, R: 2, X: 2 },
-            { rank: 4, firstName: "Jeromy", lastName: "Sloan", position: "RB", P: 1, R: 3, X: 0 },
-            { rank: 5, firstName: "Joseph", lastName: "White", position: "OL", P: 0, R: 2, X: 1 },
-            { rank: 6, firstName: "Steve", lastName: "Rose", position: "OL", P: 1, R: 1, X: 0 },
-            { rank: 7, firstName: "Frank", lastName: "Romero", position: "OL", P: 1, R: 1, X: 0 },
-            { rank: 8, firstName: "Frankie", lastName: "Fleming", position: "WR", P: 1, R: 1, X: 1 },
-            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+            { rank: 1, firstName: "Noel", lastName: "Sanders", position: "WR", P: 3, R: 1, X: 1 },
+            { rank: 2, firstName: "Tom", lastName: "Kemp", position: "QB", P: 2, R: 2, X: 2 },
+            { rank: 3, firstName: "Jeremy", lastName: "Sloan", position: "HB", P: 1, R: 3, X: 1 },
+            { rank: 4, firstName: "Lucas", lastName: "Rose", position: "WR", P: 2, R: 1, X: 0 },
+            { rank: 5, firstName: "Joseph", lastName: "White", position: "OL", P: 1, R: 2, X: 1 },
+            { rank: 6, firstName: "Kevin", lastName: "Beasley", position: "OL", P: 1, R: 2, X: 0 },
+            { rank: 7, firstName: "Daniel", lastName: "Hayes", position: "OL", P: 2, R: 1, X: 1 },
+            
         ],
         defense: [
-            { rank: 1, firstName: "Jack", lastName: "Dailey", position: "DB", P: 3, R: 1, X: 3 },
+            { rank: 1, firstName: "Jack", lastName: "Dailey", position: "DB", P: 3, R: 2, X: 3 },
             { rank: 2, firstName: "Norm", lastName: "Vaughn", position: "DL", P: 2, R: 2, X: 2 },
             { rank: 3, firstName: "Chris", lastName: "Warner", position: "LB", P: 2, R: 2, X: 2 },
             { rank: 4, firstName: "Shaun", lastName: "Smith", position: "DL", P: 2, R: 2, X: 1 },
             { rank: 5, firstName: "Robbie", lastName: "Henrick", position: "LB", P: 1, R: 2, X: 2 },
-            { rank: 6, firstName: "Fred", lastName: "Kellogg", position: "DB", P: 3, R: 0, X: 0 },
-            { rank: 7, firstName: "David", lastName: "Conley", position: "LB", P: 0, R: 2, X: 1 },
-            { rank: 8, firstName: "Rodney", lastName: "Williams", position: "LB", P: 1, R: 0, X: 1 },
-            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+            { rank: 6, firstName: "David", lastName: "Conley", position: "LB", P: 0, R: 2, X: 1 },
+            { rank: 7, firstName: "Myron", lastName: "Lambert", position: "LB", P: 2, R: 0, X: 2 },
+           
         ],
         playCharts: {
             normal: ["P", "P", "R", "R", "R", "X"],
@@ -275,9 +273,9 @@ const teams = {
             hurry: ["P", "P", "P", "P", "R", "X"],
         },
          playerFinder: {
-            P: ["1", "1", "1", "2", "2", "4"],
-            R: ["4", "4", "4", "1", "1", "3"],
-            X: ["2", "2", "2", "1", "1", "4"],
+            P: ["1", "1", "1", "4", "4", "3"],
+            R: ["3", "3", "3", "2", "1", "4"],
+            X: ["1", "1", "1", "3", "3", "3"],
      },
 
     powerfactor: {
