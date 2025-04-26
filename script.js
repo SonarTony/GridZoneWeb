@@ -211,36 +211,35 @@ const teams = {
     },
     "Little Rock": {
         offense: [
-            { rank: 1, firstName: "Carson", lastName: "Bend", position: "RB", P: 2, R: 3, X: 2 },
-            { rank: 2, firstName: "Eddie", lastName: "Crosby", position: "QB", P: 3, R: 2, X: 2 },
-            { rank: 3, firstName: "Dwayne", lastName: "Santiago", position: "RB", P: 0, R: 3, X: 1 },
-            { rank: 4, firstName: "Hassahn", lastName: "Lloyd", position: "WR", P: 3, R: 1, X: 2 },
-            { rank: 5, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
-            { rank: 6, firstName: "Matt", lastName: "Ponce", position: "OL", P: 1, R: 2, X: 2 },
-            { rank: 7, firstName: "Ed", lastName: "Diaz", position: "OL", P: 1, R: 2, X: 1 },
-            { rank: 8, firstName: "Daniel", lastName: "Gains", position: "WR", P: 1, R: 2, X: 1 },
-            { rank: 9, firstName: "0lank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 2 },
+           
+            { rank: 1, firstName: "Eddie", lastName: "Crosby", position: "QB", P: 3, R: 1, X: 2 },
+            { rank: 2, firstName: "Carson", lastName: "Bend", position: "RB", P: 2, R: 2, X: 2 },
+            { rank: 3, firstName: "Hassahn", lastName: "Lloyd", position: "WR", P: 3, R: 1, X: 1 },
+            { rank: 4, firstName: "Matt", lastName: "Ponce", position: "OL", P: 1, R: 2, X: 2 },
+            { rank: 5, firstName: "Ed", lastName: "Diaz", position: "OL", P: 1, R: 2, X: 1 },
+            { rank: 6, firstName: "Daniel", lastName: "Gains", position: "OL", P: 1, R: 2, X: 1 },
+            { rank: 7, firstName: "Randall", lastName: "Ferguson", position: "WR", P: 2, R: 0, X: 2 },
+           
         ],
         defense: [
-            { rank: 1, firstName: "Al", lastName: "Freidman", position: "DB", P: 3, R: 1, X: 3 },
+            { rank: 1, firstName: "Al", lastName: "Freidman", position: "DB", P: 3, R: 1, X: 2 },
             { rank: 2, firstName: "Hank", lastName: "Kaiser", position: "LB", P: 1, R: 3, X: 2 },
             { rank: 3, firstName: "Willie", lastName: "Davison", position: "DL", P: 1, R: 3, X: 1 },
-            { rank: 4, firstName: "Frank", lastName: "Bartlett", position: "DB", P: 1, R: 2, X: 2 },
-            { rank: 5, firstName: "Jeff", lastName: "McConnell", position: "LB", P: 1, R: 2, X: 1 },
-            { rank: 6, firstName: "Duce", lastName: "Downs", position: "LB", P: 1, R: 3, X: 0 },
-            { rank: 7, firstName: "Rick", lastName: "Bell", position: "LB", P: 0, R: 1, X: 2 },
-            { rank: 8, firstName: "Tiv", lastName: "Nelson", position: "LB", P: 1, R: 2, X: 1 },
-            { rank: 9, firstName: "Blank", lastName: "Blank", position: "Extra", P: 0, R: 0, X: 0 },
+            { rank: 4, firstName: "Duce", lastName: "Downs", position: "LB", P: 1, R: 3, X: 1 },
+            { rank: 5, firstName: "Rick", lastName: "Nelson", position: "DB", P: 2, R: 2, X: 1 },
+            { rank: 6, firstName: "Rick", lastName: "Bell", position: "LB", P: 0, R: 1, X: 2 },
+            { rank: 7, firstName: "Albert", lastName: "Garrison", position: "LB", P: 1, R: 2, X: 0 },
+           
         ],
         playCharts: {
-            normal: ["R", "R", "R", "X", "X", "P"],
+            normal: ["R", "R", "X", "X", "P", "P"],
             control: ["R", "R", "R", "R", "P", "P"],
-            hurry: ["X", "P", "P", "P", "P", "R"],
+            hurry: ["X", "X", "P", "P", "P", "P"],
         },
          playerFinder: {
-            P: ["4", "4", "4", "1", "1", "1"],
-            R: ["1", "1", "3", "3", "2", "2"],
-            X: ["1", "1", "1", "4", "4", "3"],
+            P: ["3", "3", "3", "2", "2", "2"],
+            R: ["2", "2", "2", "1", "3", "1"],
+            X: ["2", "2", "7", "7", "2", "3"],
      },
 
     powerfactor: {
