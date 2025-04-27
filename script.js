@@ -389,7 +389,7 @@ const teams = {
 "Scottsdale": {
     offense: [
         { rank: 1, firstName: "Rick", lastName: "Ross", position: "QB", P: 2, R: 0, X: 2 },
-        { rank: 2, firstName: "Paris", lastName"Castro", position: "HB", P: 1, R: 2, X: 2 },
+        { rank: 2, firstName: "Paris", lastName: "Castro", position: "HB", P: 1, R: 2, X: 2 },
         { rank: 3, firstName: "Lauren", lastName: "Farley", position: "OL", P: 3, R: 2, X: 2 },
         { rank: 4, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
         { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 },
@@ -761,7 +761,7 @@ function displayInjuredPlayers() {
 }
 
 // Mark a player as injured
-functionmarkInjured() {
+function markInjured() {
     const rank = parseInt(document.getElementById('injury-rank').value, 10);
     const teamName = document.getElementById('injury-team').value;
     const isOffense = document.getElementById('is-offense').checked;
