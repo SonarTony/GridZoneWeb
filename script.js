@@ -392,10 +392,9 @@ const teams = {
         { rank: 2, firstName: "Paris", lastName: "Castro", position: "HB", P: 1, R: 2, X: 2 },
         { rank: 3, firstName: "Lauren", lastName: "Farley", position: "OL", P: 3, R: 2, X: 2 },
         { rank: 4, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
-        { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 }],
+        { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 },
         { rank: 6, firstName: "Preston", lastName: "Miller", position: "WR", P: 1, R: 2, X: 1 },
-        { rank: 7, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
-
+        { rank: 7, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 }
     ],
     defense: [
         { rank: 1, firstName: "Jeff", lastName: "McConnell", position: "LB", P: 1, R: 2, X: 1 },
