@@ -17,7 +17,7 @@ const teams = {
             { rank: 5, firstName: "Damon", lastName: "Morton", position: "DB", P: 2, R: 0, X: 1 },
             { rank: 6, firstName: "Jack", lastName: "Coleman", position: "DL", P: 1, R: 1, X: 1 },
             { rank: 7, firstName: "Robert", lastName: "Craft", position: "DL", P: 0, R: 1, X: 2 },
-
+           
         ],
         playCharts: {
             normal: ["P", "P", "R", "R", "R", "X"],
@@ -43,7 +43,7 @@ const teams = {
             { rank: 5, firstName: "James", lastName: "Smith", position: "OL", P: 1, R: 1, X: 3 },
             { rank: 6, firstName: "Harold", lastName: "Donovan", position: "HB", P: 1, R: 1, X: 2 },
             { rank: 7, firstName: "Bruce", lastName: "Lynch", position: "RB", P: 0, R: 1, X: 2 },
-
+            
         ],
         defense: [
             { rank: 1, firstName: "Hubert", lastName: "Vazquez", position: "DB", P: 2, R: 2, X: 3 },
@@ -180,7 +180,7 @@ const teams = {
             { rank: 5, firstName: "Jason", lastName: "Benson", position: "OL", P: 0, R: 2, X: 1 },
             { rank: 6, firstName: "David", lastName: "Booker", position: "OL", P: 0, R: 1, X: 2 },
             { rank: 7, firstName: "Jim", lastName: "Schultz", position: "HB", P: 0, R: 2, X: 0 },
-
+            
         ],
         defense: [
             { rank: 1, firstName: "Omar", lastName: "Wiley", position: "LB", P: 1, R: 3, X: 3 },
@@ -190,7 +190,7 @@ const teams = {
             { rank: 5, firstName: "John", lastName: "Merrit", position: "DL", P: 1, R: 1, X: 2 },
             { rank: 6, firstName: "Bill", lastName: "Zimmerman", position: "DB", P: 2, R: 1, X: 1 },
             { rank: 7, firstName: "Javier", lastName: "Lopez", position: "LB", P: 1, R: 1, X: 1 },
-
+           
         ],
         playCharts: {
             normal: ["R", "R", "R", "X", "X", "P"],
@@ -209,7 +209,7 @@ const teams = {
     },
     "Little Rock": {
         offense: [
-
+           
             { rank: 1, firstName: "Eddie", lastName: "Crosby", position: "QB", P: 3, R: 1, X: 2 },
             { rank: 2, firstName: "Carson", lastName: "Bend", position: "RB", P: 2, R: 2, X: 2 },
             { rank: 3, firstName: "Hassahn", lastName: "Lloyd", position: "WR", P: 3, R: 1, X: 1 },
@@ -217,7 +217,7 @@ const teams = {
             { rank: 5, firstName: "Ed", lastName: "Diaz", position: "OL", P: 1, R: 2, X: 1 },
             { rank: 6, firstName: "Daniel", lastName: "Gains", position: "OL", P: 1, R: 2, X: 1 },
             { rank: 7, firstName: "Randall", lastName: "Ferguson", position: "WR", P: 2, R: 0, X: 2 },
-
+           
         ],
         defense: [
             { rank: 1, firstName: "Al", lastName: "Freidman", position: "DB", P: 3, R: 1, X: 2 },
@@ -227,7 +227,7 @@ const teams = {
             { rank: 5, firstName: "Rick", lastName: "Nelson", position: "DB", P: 2, R: 2, X: 1 },
             { rank: 6, firstName: "Rick", lastName: "Bell", position: "DL", P: 0, R: 1, X: 2 },
             { rank: 7, firstName: "Albert", lastName: "Garrison", position: "LB", P: 1, R: 2, X: 0 },
-
+           
         ],
         playCharts: {
             normal: ["R", "R", "X", "X", "P", "P"],
@@ -252,7 +252,7 @@ const teams = {
             { rank: 5, firstName: "Joseph", lastName: "White", position: "OL", P: 1, R: 2, X: 1 },
             { rank: 6, firstName: "Kevin", lastName: "Beasley", position: "OL", P: 1, R: 2, X: 0 },
             { rank: 7, firstName: "Daniel", lastName: "Hayes", position: "OL", P: 2, R: 1, X: 1 },
-
+            
         ],
         defense: [
             { rank: 1, firstName: "Jack", lastName: "Dailey", position: "DB", P: 3, R: 2, X: 3 },
@@ -262,7 +262,7 @@ const teams = {
             { rank: 5, firstName: "Robbie", lastName: "Henrick", position: "LB", P: 1, R: 2, X: 2 },
             { rank: 6, firstName: "David", lastName: "Conley", position: "LB", P: 0, R: 2, X: 1 },
             { rank: 7, firstName: "Myron", lastName: "Lambert", position: "LB", P: 2, R: 0, X: 2 },
-
+           
         ],
         playCharts: {
             normal: ["P", "P", "R", "R", "R", "X"],
@@ -287,7 +287,7 @@ const teams = {
             { rank: 5, firstName: "Ben", lastName: "Madison", position: "OL", P: 1, R: 2, X: 0 },
             { rank: 6, firstName: "Thad", lastName: "Hurley", position: "OL", P: 1, R: 1, X: 2 },
             { rank: 7, firstName: "Michael", lastName: "Jordain", position: "RB", P: 1, R: 0, X: 2 },
-
+           
         ],
         defense: [
             { rank: 1, firstName: "Tom", lastName: "Webster", position: "DL", P: 2, R: 2, X: 2 },
@@ -297,7 +297,7 @@ const teams = {
             { rank: 5, firstName: "Clifton", lastName: "Clark", position: "DL", P: 2, R: 1, X: 1 },
             { rank: 6, firstName: "John", lastName: "Jackson", position: "DB", P: 2, R: 1, X: 0 },
             { rank: 7, firstName: "Kris", lastName: "Kellce", position: "LB", P: 1, R: 2, X: 0 },
-
+           
         ],
         playCharts: {
             normal: ["X", "P", "P", "P", "P", "R"],
@@ -358,7 +358,7 @@ const teams = {
             { rank: 5, firstName: "Garth", lastName: "Burgess", position: "OL", P: 2, R: 1, X: 0 },
             { rank: 6, firstName: "Ervin", lastName: "Thompson", position: "OL", P: 2, R: 0, X: 0 },
             { rank: 7, firstName: "Coy", lastName: "Chen", position: "OL", P: 0, R: 2, X: 1 },
-
+          
         ],
         defense: [
             { rank: 1, firstName: "Paul", lastName: "Myers", position: "DL", P: 2, R: 2, X: 2 },
@@ -368,7 +368,7 @@ const teams = {
             { rank: 5, firstName: "Jackie", lastName: "King", position: "DL", P: 1, R: 0, X: 2 },
             { rank: 6, firstName: "Pierre", lastName: "Hammond", position: "DB", P: 1, R: 0, X: 2 },
             { rank: 7, firstName: "Martin", lastName: "Collier", position: "LB", P: 1, R: 0, X: 1 },
-
+           
         ],
         playCharts: {
             normal: ["P", "P", "R", "P", "R", "R"],
@@ -394,7 +394,8 @@ const teams = {
         { rank: 4, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
         { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 },
         { rank: 6, firstName: "Preston", lastName: "Miller", position: "WR", P: 1, R: 2, X: 1 },
-        { rank: 7, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 }
+        { rank: 7, firstName: "Asa", lastName: "Hunt", position: "OL", P: 1, R: 1, X: 1 },
+       
     ],
     defense: [
         { rank: 1, firstName: "Jeff", lastName: "McConnell", position: "LB", P: 1, R: 2, X: 1 },
@@ -404,7 +405,7 @@ const teams = {
         { rank: 5, firstName: "Simon", lastName: "Wiley", position: "DB", P: 2, R: 0, X: 0 },
         { rank: 6, firstName: "Clifford", lastName: "Beard", position: "DL", P: 1, R: 1, X: 1 },
         { rank: 7, firstName: "Toby", lastName: "Santiago", position: "DL", P: 0, R: 1, X: 1 },
-
+        
     ],
     playCharts: {
         normal: ["R", "P", "P", "P", "X", "X"],
@@ -421,7 +422,7 @@ powerfactor: {
      PF: 5,
  },
 },
-
+    
 };
                 const footballCharts = {
                   "P_vs_P": [
@@ -546,7 +547,7 @@ powerfactor: {
                           { diceRoll: 14, playerRating: "1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!", outcomeElse:"6 Point Gain" },
                           { diceRoll: 15, playerRating: "0,1,2,3", outcomeIfMet: "TOUCHDOWN RUN!!" },
                       ],
-
+                  
                       "X_vs_P": [
                           { diceRoll: -2, playerRating: "0,1,2,3", outcomeIfMet: "INTERCEPTED! One Zone Downfield, +2 on Return Roll" },
                           { diceRoll: -1, playerRating: "0,1,2,3", outcomeIfMet: "1 Point Loss Completion"},
@@ -1100,47 +1101,57 @@ if (chartKey.includes("P_vs_")) {
     receiverName = getReceiverForPassPlay(offenseTeam);
 }
 
-document.getElementById('dice-result').textContent = `${finalTwelveSidedDie}`;
-document.getElementById('player-result').textContent = selectedPlayerName;
-document.getElementById('play-result').textContent = chartResult;
-
-// Handle special events
-const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie1);
-if (specialEvent && eventDie === 6) {
-    document.getElementById('events-result').textContent = specialEvent.event;
-    document.getElementById('events-result').classList.add('warning');
-} else {
-    document.getElementById('events-result').textContent = '';
-    document.getElementById('events-result').classList.remove('warning');
+// Create results container if it doesn't exist
+let resultsContainer = document.querySelector('.results-container');
+if (!resultsContainer) {
+    resultsContainer = document.createElement('div');
+    resultsContainer.className = 'results-container';
+    document.getElementById('dice-result').parentNode.insertBefore(resultsContainer, document.getElementById('dice-result'));
 }
 
-// Add visual feedback based on result
-if (chartResult.includes('COMPLETE')) {
-    document.getElementById('play-result').classList.add('success');
-} else if (chartResult.includes('INCOMPLETE') || chartResult.includes('NO GAIN')) {
-    document.getElementById('play-result').classList.add('warning');
-} else if (chartResult.includes('FUMBLE') || chartResult.includes('INJURY')) {
-    document.getElementById('play-result').classList.add('error');
-}
+// Clear previous results
+resultsContainer.innerHTML = '';
 
+// Create main result box
+const mainResult = document.createElement('div');
+mainResult.className = 'dice-result';
+mainResult.innerHTML = `
+    <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
+    <p><strong>Additional Dice:</strong> FUMBLE DIE: ${fumbleDie}, RETURN TABLE DIE: ${returnTableDie}</p>
+    ${twelveSidedDie2 !== null ? `<p><strong>Second D12:</strong> ${twelveSidedDie2}</p>` : ""}
+    ${useHigherD12 !== null ? `<p><strong>Power Factor Trigger:</strong> ${higherPFTeam} has higher PF. Using ${useHigherD12 ? "higher" : "lower"} D12.</p>` : ""}
+    <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
+    <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
+    <p class="influencing-player"><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
+    <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
+    ${receiverName ? `<p><strong>Receiver:</strong> ${receiverName}</p>` : ""}
+    <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
+    <p><strong>Random Offensive Player:</strong> ${randomOffensivePlayerName}</p>
+    <p><strong>Random Defensive Player:</strong> ${randomDefensivePlayerName}</p>
+`;
 
-    // Update the display with the results
-    document.getElementById('dice-result').innerHTML = `
-        <p><strong>Dice Rolls:</strong> Offense Die: ${offenseDie}, Defense Die: ${defenseDie}, 12-Sided Die: ${twelveSidedDie1}, Event Die: ${eventDie}</p>
-        <p><strong>Additional Dice:</strong> FUMBLE DIE: ${fumbleDie}, RETURN TABLE DIE: ${returnTableDie}</p>
-        ${twelveSidedDie2 !== null ? `<p><strong>Second D12:</strong> ${twelveSidedDie2}</p>` : ""}
-        ${useHigherD12 !== null ? `<p><strong>Power Factor Trigger:</strong> ${higherPFTeam} has higher PF. Using ${useHigherD12 ? "higher" : "lower"} D12.</p>` : ""}
-        <p><strong>Play Call:</strong> Offense: ${offensePlayCall}, Defense: ${defensePlayCall}</p>
-        <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
-        <p><strong>Chart Result:</strong> ${chartResult}</p>
-        ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
-        <p><strong>Influencing Player:</strong> <strong style="background-color:yellow;">${influencingPlayerName}</strong></p>
-        <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
-         ${receiverName ? `<p><strong>Receiver:</strong> ${receiverName}</p>` : ""}
-        <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
-        <p><strong>Random Offensive Player:</strong> ${randomOffensivePlayerName}</p>
-        <p><strong>Random Defensive Player:</strong> ${randomDefensivePlayerName}</p>
+// Create chart result box
+const chartResultBox = document.createElement('div');
+chartResultBox.className = 'chart-result';
+chartResultBox.innerHTML = `
+    <h3>Chart Result</h3>
+    <p>${chartResult}</p>
+`;
+
+// Create special event box if there's a special event
+resultsContainer.appendChild(mainResult);
+resultsContainer.appendChild(chartResultBox);
+
+if (eventDie === 6) {
+    const specialEventBox = document.createElement('div');
+    specialEventBox.className = 'special-event-result';
+    specialEventBox.innerHTML = `
+        <h3>Special Event</h3>
+        <p>${specialEventResult}</p>
     `;
+    resultsContainer.appendChild(specialEventBox);
+}
+document.getElementById('dice-result').innerHTML = ''; // Clear original container
 }
 
 // Helper to select a weighted random player
