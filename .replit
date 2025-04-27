@@ -9,3 +9,19 @@ channel = "stable-24_05"
 publicDir = "/"
 deploymentTarget = "static"
 run = ["sh", "-c", "run"]
+
+[workflows]
+runButton = "Start Server"
+
+[[workflows.workflow]]
+name = "Start Server"
+author = 27432903
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server.js"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
