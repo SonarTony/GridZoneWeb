@@ -389,7 +389,7 @@ const teams = {
 "Scottsdale": {
     offense: [
         { rank: 1, firstName: "Rick", lastName: "Ross", position: "QB", P: 2, R: 0, X: 2 },
-        { rank: 2, firstName: "Paris", lastName: "Castro", position: "HB", P: 1, R: 2, X: 2 },
+        { rank: 2, firstName: "Paris", lastName:"Castro", position: "HB", P: 1, R: 2, X: 2 },
         { rank: 3, firstName: "Lauren", lastName: "Farley", position: "OL", P: 3, R: 2, X: 2 },
         { rank: 4, firstName: "Will", lastName: "Burns", position: "OL", P: 2, R: 2, X: 2 },
         { rank: 5, firstName: "Howard", lastName: "Craves", position: "WR", P: 1, R: 0, X: 2 },
@@ -761,7 +761,7 @@ function displayInjuredPlayers() {
 }
 
 // Mark a player as injured
-function markInjured() {
+functionmarkInjured() {
     const rank = parseInt(document.getElementById('injury-rank').value, 10);
     const teamName = document.getElementById('injury-team').value;
     const isOffense = document.getElementById('is-offense').checked;
@@ -1107,11 +1107,11 @@ document.getElementById('play-result').textContent = chartResult;
 
 // Handle special events
 const specialEvent = specialEvents.find(event => event.diceRoll === twelveSidedDie1);
-if (specialEvent) {
+if (specialEvent && eventDie === 6) {
     document.getElementById('events-result').textContent = specialEvent.event;
     document.getElementById('events-result').classList.add('warning');
 } else {
-    document.getElementById('events-result').textContent = 'No special events';
+    document.getElementById('events-result').textContent = '';
     document.getElementById('events-result').classList.remove('warning');
 }
 
@@ -1135,7 +1135,7 @@ if (chartResult.includes('COMPLETE')) {
         <p><strong>Modified Roll:</strong> ${modifiedRoll}</p>
         <p><strong>Chart Result:</strong> ${chartResult}</p>
         ${specialEventResult ? `<p><strong>Special Event:</strong> ${specialEventResult}</p>` : ""}
-        <p><strong>Influencing Player:</strong> ${influencingPlayerName}</p>
+        <p><strong>Influencing Player:</strong> <strong style="background-color:yellow;">${influencingPlayerName}</strong></p>
         <p><strong>Selected Player:</strong> ${selectedPlayerName || "N/A"}</p>
          ${receiverName ? `<p><strong>Receiver:</strong> ${receiverName}</p>` : ""}
         <p><strong>Defensive Player Making Stop:</strong> ${defensivePlayerName}</p>
