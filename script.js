@@ -195,7 +195,7 @@ const teams = {
         playCharts: {
             normal: ["R", "R", "R", "X", "X", "P"],
             control: ["R", "R", "R", "R", "P", "p"],
-            hurry: ["P", "P", "P", "p", "X", "X"],
+            hurry: ["P", "P", "P", "P", "X", "X"],
         },
          playerFinder: {
             P: ["2", "2", "2", "1", "1", "1"],
