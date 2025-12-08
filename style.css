@@ -1,18 +1,5 @@
 
-body {
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f0f2f5;
-    line-height: 1.6;
-}
 
-h1, h2, h3 {
-    color: #1a237e;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 .team-section, .controls-section, .injury-management {
     background: white;
@@ -122,4 +109,123 @@ button:hover {
     margin: 5px 0;
     background: #ffebee;
     border-radius: 4px;
+}
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f2f5;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: #1a237e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* -------------------- Game tracker styles -------------------- */
+
+#game-tracker {
+    margin-top: 20px;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#game-tracker h2,
+#game-tracker h3 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.game-summary,
+.scoreboard,
+.zone-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.scoreboard .score-team {
+    flex: 1 1 150px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.zone-input label {
+    margin-right: 8px;
+}
+
+.zone-input input[type="number"] {
+    width: 70px;
+    padding: 4px;
+    margin-right: 8px;
+}
+
+.zone-input button {
+    padding: 4px 10px;
+    margin-right: 6px;
+}
+
+.play-slots {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 4px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.play-slot {
+    padding: 4px 0;
+    text-align: center;
+    border-radius: 4px;
+    background: #eceff1;
+    font-size: 0.8rem;
+}
+
+.play-slot.used {
+    background: #bbdefb;
+}
+
+.play-slot.current {
+    outline: 2px solid #1a237e;
+}
+
+.play-log,
+.player-stats {
+    margin-top: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.play-log table,
+.player-stats table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+}
+
+.play-log th,
+.play-log td,
+.player-stats th,
+.player-stats td {
+    border: 1px solid #cfd8dc;
+    padding: 4px 6px;
+    text-align: left;
+}
+
+.play-log th,
+.player-stats th {
+    background: #eceff1;
 }
