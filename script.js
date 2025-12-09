@@ -1102,6 +1102,8 @@ function rollDice() {
 
 // -------------------- Game tracker UI and logic --------------------
 
+// -------------------- Game tracker UI and logic --------------------
+
 function createGameTrackerUI() {
     const container = document.createElement('div');
     container.id = 'game-tracker';
@@ -1129,35 +1131,36 @@ function createGameTrackerUI() {
         <div class="zone-input">
             <label for="zone-change-input">Zone change this play:</label>
             <input type="number" id="zone-change-input" value="0" min="-10" max="10">
-            <button id="gt-apply-play">Apply To Game</button>
-            <button id="gt-undo-play">Undo Last Play</button>
+
+            <div class="x-play-type">
+                <span>If this play call was X, treat it as:</span>
+                <label><input type="radio" name="x-play-type" value="R" checked> Run</label>
+                <label><input type="radio" name="x-play-type" value="P"> Pass</label>
+            </div>
+
+            <div class="special-event-toggle">
+                <label>
+                    <input type="checkbox" id="gt-special-no-stats">
+                    Treat this play as Special Event (no player stats)
+                </label>
+            </div>
+
+            <div class="stop-type-select">
+                <span>For zero or negative zone plays, mark the defensive result:</span>
+                <select id="gt-stop-type">
+                    <option value="normal" selected>Normal stop</option>
+                    <option value="sack">Sack</option>
+                    <option value="int">Interception</option>
+                    <option value="fum">Fumble recovery</option>
+                    <option value="safety">Safety</option>
+                </select>
+            </div>
+
+            <div class="zone-buttons">
+                <button id="gt-apply-play">Apply To Game</button>
+                <button id="gt-undo-play">Undo Last Play</button>
+            </div>
         </div>
-
-        <div class="x-play-type">
-            <span>If this play call was X, treat it as:</span>
-            <label><input type="radio" name="x-play-type" value="R" checked> Run</label>
-            <label><input type="radio" name="x-play-type" value="P"> Pass</label>
-        </div>
-
-        <div class="special-event-toggle">
-            <label>
-                <input type="checkbox" id="gt-special-no-stats">
-                Treat this play as Special Event (no player stats)
-            </label>
-        </div>
-
-         <div class="stop-type-select">
-             <span>For zero or negative zone plays, mark the defensive result:</span>
-             <select id="gt-stop-type">
-              <option value="normal" selected>Normal stop</option>
-               <option value="sack">Sack</option>
-               <option value="int">Interception</option>
-               <option value="fum">Fumble recovery</option>
-               <option value="safety">Safety</option>
-             </select>
-        </div>
-
-
 
         <div class="play-slots" id="gt-play-slots">
             ${Array.from({ length: gameState.totalPlays }, (_, i) => `
@@ -1169,25 +1172,22 @@ function createGameTrackerUI() {
             <h3>Play Log</h3>
             <table>
                 <thead>
-                     <tr>
-                        <th>Player</th>
-                        <th>Team</th>
-                        <th>Side</th>
-                        <th>Rush Yds</th>
-                        <th>Rec Yds</th>
-                        <th>Norm Stops</th>
-                        <th>Sacks</th>
-                        <th>INT</th>
-                        <th>FUM Rec</th>
-                        <th>Safeties</th>
-                        </tr>
-                    </thead>
-
+                    <tr>
+                        <th>#</th>
+                        <th>Off</th>
+                        <th>Def</th>
+                        <th>Zones</th>
+                        <th>Score Δ</th>
+                        <th>Ball Before</th>
+                        <th>Ball After</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
                 <tbody id="gt-play-log-body"></tbody>
             </table>
         </div>
 
-                       <div class="player-stats">
+        <div class="player-stats">
             <h3>Player Stats</h3>
             <table>
                 <thead>
@@ -1197,6 +1197,7 @@ function createGameTrackerUI() {
                         <th>Side</th>
                         <th>Rush Yds</th>
                         <th>Rec Yds</th>
+                        <th>TD</th>
                         <th>Norm Stops</th>
                         <th>Sacks</th>
                         <th>INT</th>
@@ -1207,7 +1208,6 @@ function createGameTrackerUI() {
                 <tbody id="gt-player-stats-body"></tbody>
             </table>
         </div>
-
     `;
 
     document.body.appendChild(container);
@@ -1220,6 +1220,7 @@ function createGameTrackerUI() {
     refreshPlayLogUI();
     refreshPlayerStatsUI();
 }
+
 
 
 
@@ -1502,31 +1503,31 @@ function buildPlayerStatsFromPlays() {
     const stats = {};
 
     function ensureEntry(name, team, side) {
-    if (!name || name === 'N/A') return null;
-    const key = `${name}::${team}::${side}`;
-    if (!stats[key]) {
-        stats[key] = {
-            name,
-            team,
-            side,
-            rushYds: 0,
-            recYds: 0,
-            normalStops: 0,
-            sacks: 0,
-            interceptions: 0,
-            fumbleRecoveries: 0,
-            safeties: 0
-        };
+        if (!name || name === 'N/A') return null;
+        const key = `${name}::${team}::${side}`;
+        if (!stats[key]) {
+            stats[key] = {
+                name,
+                team,
+                side,
+                rushYds: 0,
+                recYds: 0,
+                touchdowns: 0,
+                normalStops: 0,
+                sacks: 0,
+                interceptions: 0,
+                fumbleRecoveries: 0,
+                safeties: 0
+            };
+        }
+        return stats[key];
     }
-    return stats[key];
-}
-
 
     gameState.plays.forEach(play => {
         const ctx = play.context;
         if (!ctx) return;
 
-        // Skip special event no-stats plays
+        // Skip plays marked as special event with no stats
         if (play.ignoreStats) {
             return;
         }
@@ -1535,17 +1536,21 @@ function buildPlayerStatsFromPlays() {
         const defenseTeam = play.defenseTeamName;
         const zones = play.zoneChange;
         const yards = zones * 10;
-        const statType = play.statPlayType; // "R" or "P" (after X override)
+        const statType = play.statPlayType; // "R" or "P" after X override
 
-        // Positive plays: offensive yards
-        if (zones >= 1 && yards > 0) {
+        // Positive plays: offensive yards and TDs
+        if (zones >= 1 && yards > 0 && (statType === 'R' || statType === 'P')) {
             if (statType === 'R') {
+                // Runs: selected offensive player
                 const entry = ensureEntry(ctx.selectedPlayerName, offenseTeam, 'Offense');
                 if (entry) {
                     entry.rushYds += yards;
+                    if (play.reachedEndzone) {
+                        entry.touchdowns += 1;
+                    }
                 }
             } else if (statType === 'P') {
-                // Pass: receiver gets yards, or fall back to selected player for X-as-pass
+                // Passes: receiver, or selected player for X treated as pass
                 const targetName = ctx.receiverName && ctx.receiverName.trim()
                     ? ctx.receiverName
                     : ctx.selectedPlayerName;
@@ -1553,29 +1558,31 @@ function buildPlayerStatsFromPlays() {
                 const entry = ensureEntry(targetName, offenseTeam, 'Offense');
                 if (entry) {
                     entry.recYds += yards;
+                    if (play.reachedEndzone) {
+                        entry.touchdowns += 1;
+                    }
                 }
             }
         }
 
-       // Zero or negative plays: defensive result type
-if (zones <= 0 && ctx.defensivePlayerName) {
-    const entry = ensureEntry(ctx.defensivePlayerName, defenseTeam, 'Defense');
-    if (entry) {
-        const st = play.stopType || 'normal';
-        if (st === 'int') {
-            entry.interceptions += 1;
-        } else if (st === 'fum') {
-            entry.fumbleRecoveries += 1;
-        } else if (st === 'safety') {
-            entry.safeties += 1;
-        } else if (st === 'sack') {
-            entry.sacks += 1;
-        } else {
-            entry.normalStops += 1;
+        // Zero or negative plays: defensive result type
+        if (zones <= 0 && ctx.defensivePlayerName) {
+            const entry = ensureEntry(ctx.defensivePlayerName, defenseTeam, 'Defense');
+            if (entry) {
+                const st = play.stopType || 'normal';
+                if (st === 'int') {
+                    entry.interceptions += 1;
+                } else if (st === 'fum') {
+                    entry.fumbleRecoveries += 1;
+                } else if (st === 'safety') {
+                    entry.safeties += 1;
+                } else if (st === 'sack') {
+                    entry.sacks += 1;
+                } else {
+                    entry.normalStops += 1;
+                }
+            }
         }
-    }
-}
-
     });
 
     return Object.values(stats);
@@ -1595,22 +1602,23 @@ function refreshPlayerStatsUI() {
     const statsArray = buildPlayerStatsFromPlays();
     statsArray.forEach(stat => {
         const tr = document.createElement('tr');
-       tr.innerHTML = `
-     <td>${stat.name}</td>
+        tr.innerHTML = `
+            <td>${stat.name}</td>
             <td>${stat.team}</td>
             <td>${stat.side}</td>
             <td>${stat.rushYds}</td>
             <td>${stat.recYds}</td>
+            <td>${stat.touchdowns}</td>
             <td>${stat.normalStops}</td>
             <td>${stat.sacks}</td>
             <td>${stat.interceptions}</td>
             <td>${stat.fumbleRecoveries}</td>
             <td>${stat.safeties}</td>
-`;
-
+        `;
         tbody.appendChild(tr);
     });
 }
+
 
 
 
