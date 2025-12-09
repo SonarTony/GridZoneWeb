@@ -1170,6 +1170,7 @@ function createGameTrackerUI() {
 
         <div class="play-log">
             <h3>Play Log</h3>
+            <button id="gt-export-playlog" class="export-button">Export Play Log (CSV)</button>
             <table>
                 <thead>
                     <tr>
@@ -1189,6 +1190,7 @@ function createGameTrackerUI() {
 
         <div class="player-stats">
             <h3>Player Stats</h3>
+            <button id="gt-export-stats" class="export-button">Export Player Stats (CSV)</button>
             <table>
                 <thead>
                     <tr>
@@ -1215,11 +1217,16 @@ function createGameTrackerUI() {
     document.getElementById('gt-apply-play').addEventListener('click', applyCurrentPlayToGame);
     document.getElementById('gt-undo-play').addEventListener('click', undoLastPlay);
 
+    // new export buttons
+    document.getElementById('gt-export-playlog').addEventListener('click', exportPlayLogToCSV);
+    document.getElementById('gt-export-stats').addEventListener('click', exportPlayerStatsToCSV);
+
     refreshGameTrackerUI();
     refreshPlaySlotsUI();
     refreshPlayLogUI();
     refreshPlayerStatsUI();
 }
+
 
 
 
@@ -1620,6 +1627,113 @@ function refreshPlayerStatsUI() {
 }
 
 
+// Helper to turn rows into a CSV file and trigger download
+function downloadCSV(filename, rows) {
+    const lines = rows.map(row => row.map(value => {
+        const v = value === null || value === undefined ? '' : String(value);
+        // escape quotes and wrap in quotes
+        return `"${v.replace(/"/g, '""')}"`;
+    }).join(','));
+
+    const csvContent = lines.join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+// Export play log to CSV
+function exportPlayLogToCSV() {
+    if (!gameState.plays.length) {
+        alert('No plays to export yet.');
+        return;
+    }
+
+    const rows = [];
+    rows.push([
+        'Play #',
+        'Offense',
+        'Defense',
+        'Zones',
+        'Score Δ',
+        'Ball Before',
+        'Ball After',
+        'Reached Endzone',
+        'Turnover',
+        'Notes'
+    ]);
+
+    gameState.plays.forEach(play => {
+        const notes = [];
+        if (play.reachedEndzone) notes.push('Endzone');
+        if (play.turnover) notes.push('Turnover');
+        if (play.chartResult) notes.push(play.chartResult);
+        if (play.specialEvent) notes.push(`Special: ${play.specialEvent}`);
+
+        rows.push([
+            play.number,
+            play.offenseTeamName,
+            play.defenseTeamName,
+            play.zoneChange,
+            play.scoreChange,
+            play.ballBefore,
+            play.ballAfter,
+            play.reachedEndzone ? 'Yes' : 'No',
+            play.turnover ? 'Yes' : 'No',
+            notes.join(' | ')
+        ]);
+    });
+
+    downloadCSV('gridzone_play_log.csv', rows);
+}
+
+// Export player stats to CSV
+function exportPlayerStatsToCSV() {
+    const statsArray = buildPlayerStatsFromPlays();
+    if (!statsArray.length) {
+        alert('No player stats to export yet.');
+        return;
+    }
+
+    const rows = [];
+    rows.push([
+        'Player',
+        'Team',
+        'Side',
+        'Rush Yds',
+        'Rec Yds',
+        'TD',
+        'Norm Stops',
+        'Sacks',
+        'INT',
+        'FUM Rec',
+        'Safeties'
+    ]);
+
+    statsArray.forEach(stat => {
+        rows.push([
+            stat.name,
+            stat.team,
+            stat.side,
+            stat.rushYds,
+            stat.recYds,
+            stat.touchdowns,
+            stat.normalStops,
+            stat.sacks,
+            stat.interceptions,
+            stat.fumbleRecoveries,
+            stat.safeties
+        ]);
+    });
+
+    downloadCSV('gridzone_player_stats.csv', rows);
+}
 
 
 
