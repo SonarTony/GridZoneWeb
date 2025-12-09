@@ -1146,12 +1146,16 @@ function createGameTrackerUI() {
             </label>
         </div>
 
-
-        <div class="x-play-type">
-            <span>If this play call was X, treat it as:</span>
-            <label><input type="radio" name="x-play-type" value="R" checked> Run</label>
-            <label><input type="radio" name="x-play-type" value="P"> Pass</label>
+                <div class="stop-type-select">
+            <span>For zero or negative zone plays, mark the defensive result:</span>
+            <select id="gt-stop-type">
+                <option value="normal" selected>Normal stop</option>
+                <option value="int">Interception</option>
+                <option value="fum">Fumble recovery</option>
+                <option value="safety">Safety</option>
+            </select>
         </div>
+
 
         <div class="play-slots" id="gt-play-slots">
             ${Array.from({ length: gameState.totalPlays }, (_, i) => `
@@ -1178,7 +1182,7 @@ function createGameTrackerUI() {
             </table>
         </div>
 
-        <div class="player-stats">
+               <div class="player-stats">
             <h3>Player Stats</h3>
             <table>
                 <thead>
@@ -1188,12 +1192,16 @@ function createGameTrackerUI() {
                         <th>Side</th>
                         <th>Rush Yds</th>
                         <th>Rec Yds</th>
-                        <th>Stops</th>
+                        <th>Norm Stops</th>
+                        <th>INT</th>
+                        <th>FUM Rec</th>
+                        <th>Safeties</th>
                     </tr>
                 </thead>
                 <tbody id="gt-player-stats-body"></tbody>
             </table>
         </div>
+
     `;
 
     document.body.appendChild(container);
@@ -1206,6 +1214,7 @@ function createGameTrackerUI() {
     refreshPlayLogUI();
     refreshPlayerStatsUI();
 }
+
 
 
 function updateScoreboardTeamNames() {
@@ -1316,6 +1325,9 @@ function applyCurrentPlayToGame() {
     // Read the special event no stats checkbox
     const specialNoStatsCheckbox = document.getElementById('gt-special-no-stats');
     const ignoreStats = specialNoStatsCheckbox ? specialNoStatsCheckbox.checked : false;
+    const stopTypeSelect = document.getElementById('gt-stop-type');
+    const stopType = stopTypeSelect ? stopTypeSelect.value : 'normal';
+
 
     const ballBefore = gameState.ballPosition;
     let ballAfter = ballBefore;
@@ -1371,7 +1383,8 @@ function applyCurrentPlayToGame() {
         turnover,
         rawPlayType,          // original chart type
         statPlayType,         // type for stats: P or R (or null)
-        ignoreStats,          // true when you checked "Special Event (no player stats)"
+        ignoreStats,
+        stopType,           // true when you checked "Special Event (no player stats)"
         chartResult: lastPlayContext.chartResult,
         specialEvent: lastPlayContext.specialEventResult || '',
         context: {
@@ -1403,6 +1416,13 @@ function applyCurrentPlayToGame() {
     // Clear the special event checkbox for the next play
     if (specialNoStatsCheckbox) {
         specialNoStatsCheckbox.checked = false;
+    }
+
+    if (specialNoStatsCheckbox) {
+        specialNoStatsCheckbox.checked = false;
+    }
+    if (stopTypeSelect) {
+        stopTypeSelect.value = 'normal';
     }
 
     // Refresh UI
@@ -1485,7 +1505,10 @@ function buildPlayerStatsFromPlays() {
                 side,
                 rushYds: 0,
                 recYds: 0,
-                stops: 0
+                normalStops: 0,
+                interceptions: 0,
+                fumbleRecoveries: 0,
+                safeties: 0
             };
         }
         return stats[key];
@@ -1495,7 +1518,7 @@ function buildPlayerStatsFromPlays() {
         const ctx = play.context;
         if (!ctx) return;
 
-        // If this play is marked as special event no stats, skip it
+        // Skip special event no-stats plays
         if (play.ignoreStats) {
             return;
         }
@@ -1506,7 +1529,7 @@ function buildPlayerStatsFromPlays() {
         const yards = zones * 10;
         const statType = play.statPlayType; // "R" or "P" (after X override)
 
-        // Positive plays: give yards to the right offensive player
+        // Positive plays: offensive yards
         if (zones >= 1 && yards > 0) {
             if (statType === 'R') {
                 const entry = ensureEntry(ctx.selectedPlayerName, offenseTeam, 'Offense');
@@ -1514,24 +1537,39 @@ function buildPlayerStatsFromPlays() {
                     entry.rushYds += yards;
                 }
             } else if (statType === 'P') {
-                const entry = ensureEntry(ctx.receiverName, offenseTeam, 'Offense');
+                // Pass: receiver gets yards, or fall back to selected player for X-as-pass
+                const targetName = ctx.receiverName && ctx.receiverName.trim()
+                    ? ctx.receiverName
+                    : ctx.selectedPlayerName;
+
+                const entry = ensureEntry(targetName, offenseTeam, 'Offense');
                 if (entry) {
                     entry.recYds += yards;
                 }
             }
         }
 
-        // Zero or negative plays: credit defensive player making the stop
+        // Zero or negative plays: defensive result type
         if (zones <= 0 && ctx.defensivePlayerName) {
             const entry = ensureEntry(ctx.defensivePlayerName, defenseTeam, 'Defense');
             if (entry) {
-                entry.stops += 1;
+                const st = play.stopType || 'normal';
+                if (st === 'int') {
+                    entry.interceptions += 1;
+                } else if (st === 'fum') {
+                    entry.fumbleRecoveries += 1;
+                } else if (st === 'safety') {
+                    entry.safeties += 1;
+                } else {
+                    entry.normalStops += 1;
+                }
             }
         }
     });
 
     return Object.values(stats);
 }
+
 
 
 
@@ -1552,11 +1590,15 @@ function refreshPlayerStatsUI() {
             <td>${stat.side}</td>
             <td>${stat.rushYds}</td>
             <td>${stat.recYds}</td>
-            <td>${stat.stops}</td>
+            <td>${stat.normalStops}</td>
+            <td>${stat.interceptions}</td>
+            <td>${stat.fumbleRecoveries}</td>
+            <td>${stat.safeties}</td>
         `;
         tbody.appendChild(tr);
     });
 }
+
 
 
 
